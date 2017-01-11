@@ -1,0 +1,286 @@
+<nav-top></nav-top>
+<div class="layout-body">
+<div class="layout-main-container">
+<nav-left></nav-left>
+<div class="top-tab-panel">
+    <div class="top-tab-panel-body">
+        <div class="top-area">
+            <div class="search-box pull-left">
+                <form class="form-inline" role="form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="keyword" ng-keypress="enter($event)" name="keyword"
+                               ng-model="userphone" placeholder="手机号/订单号查询订单">
+                        <span class="input-group-btn">
+                        <a class="btn btn-primary" ng-click="searchOrder()"><span class="fa fa-search"></span></a>
+                        </span>
+                    </div>
+                    <!--  <div class="alert alert-danger">没有找到该手机号的会员信息</div>-->
+
+                </form>
+                <div>
+                    <div class="popover bottom fade in search-order-result"
+                         ng-class="{'open':searchOrderResult}">
+                        <!--<div class="arrow"></div>-->
+                        <h3 class="popover-title">订单查询结果
+                            <button type="button" class="close" ng-click="searchOrderResult=false"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                            </button>
+                        </h3>
+                        <div class="popover-content" ng-show="!orderinfoModel">未查询到符合条件的订单信息</div>
+                        <div class="popover-content">
+                            <div class="order-item" ng-repeat="item in orderinfoModel">
+                                <div class="order-no">
+                                    <b class="mr5">订单号</b><span>{{item.order_id}}</span>
+
+
+                                    <div class="pull-right"><span class="text-yellow">{{item.order_statedes}}</span>
+                                    </div>
+                                    <span class="pull-right mr15">{{item.bookingdate}}</span>
+
+                                </div>
+                                <div class="order-info">
+                                    <div class="order-detail">
+                                        <ul>
+                                            <li ng-repeat="detailitem in item.order_detail"><span>{{detailitem.product_bookingdate}}</span><span>{{detailitem.start_timeFromat}}-{{detailitem.end_timeFormat}}</span><span>{{detailitem.venue_name}}</span><span>{{detailitem.venueatribute}}</span>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="order-desc">
+                                        <ul>
+                                            <li>
+                                                <b><span>手机号</span><tt>{{item.order_userphone}}</tt></b><b
+                                                    class="pull-right"><span>用户名</span><tt>{{item.order_username}}</tt></b>
+                                            </li>
+                                            <li><span>下单时间</span><tt>{{item.order_createtime|date:"yyyy-MM-dd
+                                                HH:mm:ss"}}</tt></li>
+                                            <li><span>发票信息</span><tt>{{item.order_invoicetitle}}</tt></li>
+                                            <li><span>特殊要求</span><tt>{{item.venue_detail.remark}}</tt></li>
+                                            <li class="order-price">
+                                                <b><span>订单金额</span><i>&yen;{{item.order_amount}}</i></b>
+                                                <b class="pull-right"
+                                                   ng-show="item.order_discount>0"><span>会员优惠</span><i>&nbsp;&yen;{{item.order_discount}}</i></span>
+                                                </b>
+                                            </li>
+                                            <li class="order-price">
+                                                <span>支付金额</span><i>&yen;{{item.order_amount-item.order_discount}}</i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="order-op">
+                                    <div class="pull-right"><a ng-click="payOrder(item.order_id)"
+                                                               ng-show="item.order_state==1"
+                                                               class="btn btn-default btn-sm">已支付</a>
+                                        <a ng-show="item.order_state==2" ng-click="expenseOrder(item.order_id)"
+                                           class="btn btn-default btn-sm">已消费</a>
+                                        <a ng-show="item.order_state==1||item.order_state==2"
+                                           class="btn btn-default btn-sm">改签日期</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="pull-left" style="width: 250px; margin-left: 10px; max-height: 34px;">
+                <div class="" id="alerts-container" style="height: 34px;"  > </div>
+            </div>-->
+
+            <div class="pull-right"><a class="btn btn-default pull-right hidden-xs" href="/venue"><span
+                    class="fa fa-lock mr5"></span>开/关场地</a></div>
+            <div class="pull-right mr5"><a class="btn btn-default pull-right hidden-xs" href="/order/list"><span
+                    class="fa fa-file mr5"></span>所有订单</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=""></div>
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <div class="container-body">
+        <div class="loading-box" ng-show="!isshowmain">
+            <p>奋力加载中...</p>
+        </div>
+        <div class="main-area">
+            <div class="filter-box">
+                <div class="data-picker-wrap">
+                    <div class="date-list-panel">
+                        <div class="selected-date">
+                            <div class="date-wrapper">
+                                <a href="javascript:;" ng-click="ishsowfilter=true"><p bs-tooltip=""
+                                                                                       data-title="点击选择其他日期">
+                                    {{selecteddate|date:"EEEE"}}</p>
+                                    <span>{{selecteddate|date:'mediumDate'}}</span></a>
+
+                                <div class="popover bottom fade in"
+                                     ng-class="{'open':ishsowfilter}">
+                                    <div class="arrow"></div>
+                                    <h3 class="popover-title">切换日期
+                                        <button type="button" class="close" ng-click="ishsowfilter=false"><span
+                                                aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                        </button>
+                                    </h3>
+
+                                    <div class="popover-content">
+                                        <div>
+                                            <label>选择查询日期</label>
+
+                                            <div class="date-picker start">
+
+                                                <input type="text" class="form-control"
+                                                       required name="filterdate"
+                                                       data-min-date="{{dateViewModel[0].date}}" ng-model="filterdate"
+                                                       modelDateFormat="yyyy-MM-dd"
+                                                       bs-datepicker=""/><i
+                                                    class="right-icon glyphicon glyphicon-calendar"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="popover-bottom">
+                                        <input type="button" class="btn btn-primary btn-sm"
+                                               ng-click="searchBySelectDate()"
+                                               value="确定">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="week-list">
+                            <div id="scroll1" class="scroll-wrap">
+                                <div class="scroller-x">
+                                    <div class="list-wrap">
+                                        <ul>
+
+                                            <li ng-repeat="dateitem in dateViewModel" ng-class="dateitem.classname">
+
+                                                <a href="javascript:;" id="{{dateitem.date}}"
+                                                   ng-click="getProductBookingInfoForDate(dateitem.date)">
+                                                    <p>{{dateitem.week}}</p>
+                                                    <span>{{dateitem.date|date:'yyyy.MM.dd'}}</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="reserve-main-box" ng-show="showBars">
+                <div class="left-box">
+                    <div class="hours-buck">
+                        <ul>
+
+
+                            <li ng-repeat="detailitem in bookingModel[0].productDetail">
+                                <span>{{detailitem.start_time}}</span><span>{{detailitem.end_time}}</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-box" ng-show="showBars">
+                    <div id="scrollx">
+                        <div class="scroller-x">
+                            <table class="prod-table">
+                                <thead>
+                                <tr>
+                                    <td ng-repeat="item in bookingModel"><b>{{item.productname}}</b></td>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+
+                                <tr ng-repeat="detailitem in bookingModel[0].productDetail" ng-init="index=$index">
+                                    <td ng-repeat="productitem in bookingModel">
+                                        <b ng-class="clickArr.indexOf(productitem.productDetail[index].detailId)>=0?'active':productitem.productDetail[index].classname"
+                                           ng-click="getDetailInfo(productitem.productDetail[index],productitem)">
+                                            <span ng-if="productitem.productDetail[index].bookingreason==1"
+                                                  class="phone"
+                                                  ng-click="">{{productitem.productDetail[index].text}}</span>
+                                            <span title="{{productitem.productDetail[index].text}}" ng-if="productitem.productDetail[index].bookingreason==2"
+                                                  class="{{productitem.productDetail[index].outlineclass}}">{{productitem.productDetail[index].text}}</span>
+                                            {{productitem.productDetail[index].pricedes}}</b></td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="cart">
+    <div class="cart-body" ng-show="isshowfooter">
+        <div class="cart-title"><b>预订</b><b class="clear-cart" ng-click="clearSelect()"><i
+                class="fa fa-trash-o mr5"></i>清空</b></div>
+        <div class="cart-panel">
+            <ul class="cart-item">
+                <li ng-repeat="item in detailViewModel"><span>{{item.bookingdateformat|date:"yyyy-MM-dd"}}</span> <span>{{item.productname}}</span>
+                    <span>{{item.productDetails.starttime}}-{{item.productDetails.end_time}}</span>
+
+                </li>
+
+            </ul>
+
+        </div>
+        <div class="member-info">
+            <div class="form-group form-group-sm">
+                <!--<label for="member_phone">手机号</label>-->
+
+                <input id="member_phone" class="form-control member-phone input-sm" ng-model="formobj.userphone"
+                       type="tel" placeholder="手机号">
+
+            </div>
+            <div class="form-group form-group-sm"><input type="button" ng-disabled="true"
+                                                         class="btn btn-primary btn-sm btn-block "
+                                                         value="获取会员信息">
+            </div>
+        </div>
+
+        <div class="coupon-info">
+            <!-- <div class="coupon-select form-group form-group-sm">
+                 <select class="form-control input-sm">
+                     <option>金卡会员<span class="red-2">WKS1223423435</span></option>
+                     <option>金卡会员<span class="red-2">WKS324354355</span></option>
+                     <option>金卡会员<span class="red-2">WKS32534546</span></option>
+                 </select>
+             </div>
+             <div class=" form-group form-group-sm">
+                 <ul class="discount-list pointer">
+                     <li><span>会员优惠</span><span class="pull-right"><span class="">-</span><span
+                             class="">30</span>元</span></li>
+                 </ul>
+             </div>-->
+            <div class="invoice form-group form-group-sm">
+                <input type="text" maxlength="30" ng-model="formobj.invoicetitle" class="form-control input-sm"
+                       placeholder="发票抬头">
+            </div>
+            <div class="invoice form-group form-group-sm">
+                <input type="text" maxlength="30" ng-model="formobj.remark" class="form-control input-sm"
+                       placeholder="备注特殊要求">
+            </div>
+        </div>
+    </div>
+    <div class="valid-result" ng-class="{'hide':!submiterrormessage}" id="invalid_message">
+        <div ng-class="submiterrormessage.type">{{submiterrormessage.content}}</div>
+    </div>
+    <div class="cart-bar">
+        <div class="cart-bar-logo"><span class="fa fa-shopping-cart"></span></div>
+        <div class="cart-bar-content pointer">
+            <span ng-class="{'show':!submitdisabled,'hidden':submitdisabled}">还没有选择预订时段</span>
+            <span ng-class="{'show':submitdisabled,'hidden':!submitdisabled}">
+            <span>应付<strong class="ml5">{{allamount}}</strong>元</span><br>
+           <!-- <span class="price-del">原价<del class="ml5">9000</del>元</span>-->
+                </span>
+        </div>
+        <div class="cart-bar-op"><a href="#" ng-disabled="!submitdisabled" ng-click="submitOrderInfo()"
+                                    class="btn btn-primary">{{submittext}}</a></div>
+    </div>
+</div>
+</div>
+</div>

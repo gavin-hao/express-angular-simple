@@ -1,0 +1,92 @@
+<nav-top></nav-top>
+<div class="layout-body">
+    <div class="layout-main-container">
+        <nav-left></nav-left>
+        <div class="top-tab-panel">
+            <div class="top-tab-panel-body">
+                <div class="top-area">
+                    <div class="search-box pull-left">
+                        <form class="form-inline" ng-submit="searchOrder()">
+                            <div class="form-group">
+                                <label for="state">订单状态</label>
+                                <select class="form-control input-sm" id="state" ng-model="selectState" ng-options="m.state as m.text for m in orderStateViewModel">
+
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="start">预订时间</label>
+
+                                <input type="text" class="form-control input-sm" ng-model="searchStartTime" id="start"
+                                       placeholder="起始时间"
+                                       bs-datepicker="" data-container="body">
+                            </div>
+                            <div class="form-group">
+                                <label for="end">-</label>
+                                <input type="text" class="form-control input-sm" ng-model="searchEndTime" id="end"
+                                       placeholder="截止时间"
+                                       bs-datepicker="" data-container="body">
+                            </div>
+                            <button type="submit"  class="btn btn-sm btn-primary">查询</button>
+                        </form>
+                    </div>
+
+                    <div class="pull-right mr5"><a class="btn btn-default btn-sm pull-right hidden-xs"><span
+                            class="fa fa-file mr5"></span>导出Excel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+            <div class="container-body">
+                <section class="mt30 order-list-page">
+                    <div class="pull-right text-light-grey clearfix mb15"><em>共 {{totalcount}} 个订单</em></div>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>订单号</th>
+                            <th>场地</th>
+                            <th>预订日期</th>
+                            <th>时段</th>
+                            <th>状态</th>
+                            <th>来源</th>
+                            <th>订单金额</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in orderlistViewmodel">
+                            <td>{{item.order_id}}</td>
+                            <td><p ng-repeat="detailitem in item.order_detail">
+                                {{detailitem.venue_name}}</p></td>
+                            <td><p ng-repeat="detailitem in item.order_detail">
+                                {{detailitem.product_bookingdate}}</p></td>
+                            <td><p ng-repeat="detailitem in item.order_detail">{{detailitem.start_timeFromat}}-{{detailitem.end_timeFormat}}</p></td>
+                            <td><span class="text-red">{{item.order_statedes}}</span></td>
+                            <td>{{item.order_fromdes}}</td>
+                            <td>{{item.order_amount}}元</td>
+                            <td><a href="javascript:;" ng-click="addModal(item.order_id)" class="mr15">查看</a>
+                                <a  ng-click="updateorderstate(item.order_id,item.order_state,item.order_from)" href="javascript:;" class="mr15">{{item.order_state==1?"付款":""}}</a>
+                                <a ng-click="cancelorder(item.order_id,item.order_state,2)"
+                                    href="javascript:;">{{item.order_state==1?"取消":""}}</a>
+                                <a
+                                        href="javascript:;" ng-click="deleteorer(item.order_id,item.order_state)">{{item.order_state==7?"删除":""}}</a></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </section>
+                <nav class="bottom-pager pull-right mt30">
+                    <ul class="pagination">
+                        <li  ng-class="pageIndex==1?'disabled':''"><a href="javascript:;" ng-click="gotoPrePage()"><span>&laquo;</span><span
+                                class="">上一页</span></a></li>
+                        <li ng-repeat="pageItem in pageArr" ng-class="pageIndex==pageItem?'active':''"><a href="javascript:;" ng-click="gotoCurrentPage(pageItem)" >{{pageItem}}</a></li>
+
+                        <li ng-class="pageIndex==pageCount?'disabled':''" ><a href="javascript:;"  ng-click="gotoNextPage()"><span class="">下一页</span><span aria-hidden="true">&raquo;</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

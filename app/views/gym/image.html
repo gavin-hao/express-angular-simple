@@ -1,0 +1,49 @@
+<!--二级页2-2场地服务信息-->
+<div class="second-form-cont">
+    <div bs-collapse>
+        <div class="classify-information col-lg-offset-1" bs-collapse-toggle>
+            <div class="pull-left dot-list">
+                <b>图片信息</b>
+                <span class="caret dot-right"></span>
+            </div>
+            <div class="pull-right dot">
+                <span></span>
+                <b></b>
+            </div>
+        </div>
+        <form role="form" name="form1" class="col-lg-offset-1" bs-collapse-target>
+           <div class="form-group">
+             <!--    <label for="images" class="control-label col-sm-2"><b>*</b>场馆图片</label>-->
+
+                <div class="">
+                    <div class="site-pic">
+                        <ul>
+                            <li ng-repeat="image in images">
+                                <a href="javascript:;"><img src="{{image.url}}"><b
+                                        ng-click="deleteImg($index,false)"></b></a>
+
+                            </li>
+                            <li ng-repeat="up in upload" ng-hide="up.deleted">
+                                <a href="javascript:;"><img ng-src="{{up.preview}}"><b
+                                        ng-click="deleteImg($index,true)"></b>
+
+                                    <p><s></s><span style="width:{{up.progress}}%"></span></p></a>
+                            </li>
+                            <!--<li ng-repeat="f in selectedFiles">-->
+                            <!--<a href="#"><img src="/images/upload.png"><b-->
+                            <!--ng-click="deleteImg(result.id,true)"></b></a>-->
+                            <!--<img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}">-->
+                            <!--</li>-->
+                            <li><a href="javascript:;" ng-click="showfileDialg()">
+                                <input id="imgUploader" type="file" style="display: none"
+                                       ng-file-select="onFileSelect($files)"
+                                       accept="image/*" multiple>
+                                <img src="/images/upload.png"/></b></a></li>
+                        </ul>
+                    </div>
+                    <span class="help-block">1. 图片格式为JPG、PNG；2. 图片大小在500K以下；3. 建议尺寸为320×160。</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

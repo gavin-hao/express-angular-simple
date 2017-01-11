@@ -1,0 +1,167 @@
+<!--二级页2-2场地服务信息-->
+<div bs-collapse>
+    <div class="classify-information col-lg-offset-1" bs-collapse-toggle>
+        <div class="pull-left dot-list">
+            <b>场馆信息</b>
+            <span class="caret dot-right"></span>
+        </div>
+        <div class="pull-right dot">
+            <span></span>
+            <b></b>
+        </div>
+    </div>
+    <div class="second-form-cont">
+        <div class="">
+            <form role="form" name="form1" class="form-horizontal" ng-submit="processForm()" bs-collapse-target>
+                <div class="form-group" ng-class="{'has-error': form1.$dirty&&form1.name.$invalid}">
+                    <label for="name" class="control-label col-sm-2">场馆名称</label>
+
+                    <div class="col-sm-8">
+                        <!--<input type="text" class="form-control" id="name" name="name" required disabled
+                               placeholder="场馆名称" ng-model="viewModel.name" ng-minlength="2">-->
+                        <p class="form-control-static" ng-model="viewModel.name">{{viewModel.name}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">城市</label>
+                    <div class="col-sm-1">
+                        <p class="form-control-static" ng-model="viewModel.city">{{viewModel.city}}</p>
+                    </div>
+                </div>
+                <div class="form-group"
+                     ng-class="{'has-error': form1.$dirty&&form1.area.$invalid}">
+                    <label for="area" class="control-label col-sm-2">行政区</label>
+                    <div class="col-sm-1">
+                        <!--<button type="button" class="btn-default form-control" id="selectedArea" name="selectedArea"
+                                ng-model="selectedArea" required
+                                ng-options="area for area in areas"
+                                data-placeholder="行政区" bs-select><span class="caret"></span></button>-->
+                        <button type="button" class="btn-default form-control change-btn" id="area" name="area"
+                                ng-model="vm.selectedArea" required=""
+                                ng-options="area for area in areas"
+                                data-placeholder="选择区" bs-select>
+                            <span class="caret"></span>
+                        </button>
+                        <!--<input type="hidden" ng-model="vm.selectedArea" name="area"/>-->
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{'has-error': form1.$dirty&&form1.address.$invalid}">
+                    <label for="address" class="control-label col-sm-2">地址</label>
+                    <div class="col-sm-8">
+                        <input type="text" required class="form-control" id="address" name="address" placeholder="场馆地址"
+                               ng-model="viewModel.address" style="*margin-left:11px;">
+                        <span class="form-control-feedback">必填</span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{'has-error': form1.$dirty&&form1.address.$invalid}">
+                    <label for="address" class="control-label col-sm-2">经度</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" required class="form-control" id="latitude" name="latitude" placeholder="经度"
+                               ng-model="viewModel.latitude" style="*margin-left:11px;" required>
+                        <span class="form-control-feedback">必填</span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{'has-error': form1.$dirty&&form1.address.$invalid}">
+                    <label for="address" class="control-label col-sm-2">经度</label>
+                    <div class="col-sm-8">
+                        <input type="text" required class="form-control" id="longitude" name="longitude"
+                               placeholder="纬度"
+                               ng-model="viewModel.longitude" style="*margin-left:11px;">
+                        <span class="form-control-feedback">必填</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tel1" class="control-label col-sm-2">场馆电话</label>
+                    <div class="input-group col-sm-8 pad-lr-15">
+                        <!--<input type="tel" class="form-control" id="tel" name="tel" placeholder="场馆电话" ng-model="viewModel.tel" style="*margin-left:-6px;">-->
+                        <input type="text" class="form-control" id="tel1" name="tel1" placeholder="010"
+                               ng-model="viewModel.tel1"/>
+                        <span class="input-group-addon">--</span>
+                        <input type="text" class="form-control" id="tel2" name="tel2" placeholder="11111111"
+                               ng-model="viewModel.tel2">
+                    </div>
+                </div>
+                <div class="form-group has-feedback"
+                     ng-class="{'has-error': form1.$dirty&&form1.contact_name.$invalid}">
+                    <label for="contact_name" class="control-label col-sm-2">联系人</label>
+                    <div class="col-sm-8">
+                        <input type="text" required class="form-control" id="contact_name" name="contact_name"
+                               placeholder="联系人"
+                               ng-model="viewModel.contact_name" style="*margin-left:-6px;">
+                        <span class="form-control-feedback">必填</span>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{'has-error': form1.$dirty&&form1.contact_tel.$invalid}">
+                    <label for="contact_tel" class="control-label col-sm-2">联系人手机</label>
+
+                    <div class="col-sm-8">
+                        <input type="tel" required pattern="1[3|5|7|8|][0-9]{9}" class="form-control" id="contact_tel"
+                               name="contact_tel" placeholder="联系人手机" ng-model="viewModel.contact_tel"
+                               style="*margin-left:-6px;">
+                        <span class="form-control-feedback">必填</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mataservice" class="control-label col-sm-2">场馆服务</label>
+                    <div class="Venues-service col-sm-8">
+                        <!--<ul>
+                            <li><a href="#" class="cklight">储物柜</a></li>
+                            <li><a href="#">沐浴间</a></li>
+                            <li><a href="#" class="cklight">停车场</a></li>
+                            <li><a href="#" class="cklight">器材租借</a></li>
+                            <li><a href="#">商品售卖</a></li>
+                            <li><a href="#"><input type="file" class="form-control"/><img src="img/add.png"/></a></li>
+                        </ul>-->
+                        <div class="form-control">
+                            <ul>
+                                <li ng-repeat="s in viewModel.mataservice">
+                                    <a tag="service-A" id="service-{{$index}}" svalue="{{s.id}}"
+                                       ng-click="toggleClass($index,s)"
+                                       class="{{viewModel.services.split(',').indexOf(s.id.toString())>=0?'cklight':''}}">
+                                        {{s.name_cn}}
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="serviceTime" class="control-label col-sm-2">服务时间</label>
+                    <div class="input-group col-sm-8 pad-lr-15">
+                        <input type="text" class="form-control" size="5" ng-model="viewModel.start_time"
+                               data-time-format="HH:mm" data-time-type="date" data-min-time="00:00"
+                               data-length="1" data-minute-step="60" data-arrow-behavior="pager"
+                               ng-value="{{viewModel.start_time}}"
+                               data-autoclose="1" id="shours" name="shours" required=""
+                               bs-timepicker>
+                        <span class="input-group-addon">--</span>
+                        <input type="text" class="form-control" size="5" ng-model="viewModel.end_time" required
+                               data-time-format="HH:mm" data-time-type="date" data-min-time="{{viewModel.start_time}}"
+                               data-length="1" data-minute-step="60" data-arrow-behavior="pager"
+                               data-max-time="23:00" data-autoclose="1" id="ehours" name="ehours"
+                               bs-timepicker>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="control-label col-sm-2">场馆介绍</label>
+
+                    <div class="col-sm-8">
+                        <textarea class="form-control" rows="3" id="description" name="description" placeholder="简介"
+                                  ng-model="viewModel.description"></textarea>
+                    </div>
+                </div>
+                <div class="" id="alerts-container">
+
+                </div>
+                <div class="btn-fun">
+                    <button type="submit" ng-disabled="form1.name.$invalid" class="btn btn-primary mt">保存</button>
+                    <!--<button type="submit" class="btn pd">取消</button>-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

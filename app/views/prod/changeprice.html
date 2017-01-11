@@ -1,0 +1,43 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller="changepriceCtrl">
+    <div class="modal-dialog order-popup-wd">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"  ng-click="$hide()"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">{{title}}</b></h4>
+            </div>
+            <div class="modal-body">
+                <div class="add-time">
+                    <!--<h3>添加时段</h3>-->
+
+                    <div class="edit-time">
+
+                        <b>起止时间：</b>
+                        <!--<button class="btn"><img src="/images/choose-time.png"></button>
+                        -
+                        <button class="btn"><img src="/images/choose-time.png"></button>-->
+                        <select ng-model="shours" id="shours" name="shours" ng-options="m.text for m in hourModel" disabled>
+                            <option value="">请选择</option>
+                        </select>
+                        -
+                        <select ng-model="ehours" id="ehours" name="ehours" ng-options="m.text for m in hourModel" disabled>
+                            <option value="">请选择</option>
+                        </select>
+                        <span>修改价格：<input type="text" class="form-control" ng-model="price"> 元/小时</span>
+                    </div>
+                    <div class="form-group">
+                        <div ng-show="isshowtip"  ng-class="alert.type" role="alert" style="margin-left: 50px;width: 610px; margin-top: 20px">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <strong>{{alert.title}}!</strong> {{alert.content}}
+                        </div>
+                    </div>
+                    <form role="form" ng-submit="submitForm()">
+                        <input type="hidden" ng-model="price_id"/>                        
+                        <button class="btn btn-primary" type="submit">提交</button>
+                        <button class="btn btn-default active" ng-click="$hide()">取消</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

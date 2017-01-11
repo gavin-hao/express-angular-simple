@@ -1,0 +1,86 @@
+<div class="login-page">
+    <div class="login-top"></div>
+    <div class="container login-body">
+        <div class="row">
+            <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-md-6 col-sm-8 col-lg-4 login-logo">
+                <img src="/images/logo_lg.png">
+            </div>
+            <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-md-6 col-sm-8 col-lg-4 login-welcome">
+                <p>欢迎回到动客</p>
+
+                <div id="loadingWidget" class="row-fluid ui-corner-all" style="padding: 0 .7em;" loading-widget>
+                    <div class="loadingContent">
+                        <p>
+                            <img alt="Loading  Content" src="images/ajax-loader.gif"/>&nbsp;Loading
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-md-6 col-sm-8 col-lg-4 col-sm-8">
+                <div class="login-area">
+                    <form method="post" ng-submit="login()" name="loginForm" novalidate>
+                        <div class="form-group "
+                             ng-class="{'has-error': loginForm.username.$dirty&&loginForm.username.$invalid}">
+                            <label for="username">邮箱</label>
+                            <input class="form-control input-md" type="email" id="username" name="username"
+                                   ng-model="username" placeholder="输入邮箱登录"
+                                   required
+                                   autofocus>
+
+                            <span class="help-block">{{loginForm.username.$dirty&&loginForm.username.$invalid?'输入正确的电子邮箱':''}}</span>
+                        </div>
+
+
+                        <div class="form-group"
+                             ng-class="{'has-error': loginForm.password.$dirty&&loginForm.password.$invalid}">
+                            <label for="username">密码</label>
+                            <input class="form-control" type="password" name="password" ng-model="password" required
+                                   placeholder="登录密码" required>
+                            <span class="help-block">{{loginForm.password.$dirty&&loginForm.password.$invalid?'输入密码':''}}</span>
+                        </div>
+                        <div class="form-group mt30">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="rememberMe" id="rememberMe" name="rememberMe">
+                                    两周内自动登录
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p class="text-danger">{{loginErrorMessage}}</p>
+                        </div>
+
+                        <button type="submit" id="loginBtn" ng-disabled="submitting"
+                                class="btn btn-lg btn-block btn-primary">{{submitting?'登录中...':'登录'}}
+                        </button>
+
+
+                        <p class="text-left mt15">
+                            <a href="#">忘记密码?</a>
+                        </p>
+
+                        <p class="text-muted">
+                            <small>场馆还没有开通? <a href="/signup">免费试用</a></small>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row mt15" ng-if="isAuthenticated()">
+            <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-md-6 col-sm-8 col-lg-4">
+                您已经以{{user.username}}身份登录!<a href="javascript:;"
+                                             ng-click="swichUser()">切换其他帐号</a>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-md-offset-3 col-lg-offset-4 col-md-6 col-sm-8 col-lg-4 text-help">
+                <p class="text-left mt15">推荐使用的浏览器:IE10+、谷歌、火狐</p></div>
+        </div>
+    </div>
+    <div class="container login-footer">
+
+        <a href="#">服务条款</a><a href="#">隐私政策</a><span class="ml15">&copy;2015 <span class="ml5 mr5">动客网</span>[ 京ICP备13042020 ] 保留所有权利。</span>
+
+    </div>
+</div>

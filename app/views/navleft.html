@@ -1,0 +1,40 @@
+<!--<div ng-controller="LeftNavCtrl">-->
+
+<div class="nav-xs visible-xs-block" ng-class="{'open':showMenu}" bs-navbar>
+    <ul class="sidebar-nav-xs">
+        <li data-match-route="/index"><a href="/index"><span
+                class="glyphicon glyphicon-home"></span><br><strong>首页</strong></a></li>
+        <li data-match-route="/venue.*"><a href="/venue"><span
+                class="glyphicon glyphicon-map-marker"></span><strong>场地</strong></a>
+        </li>
+        <li data-match-route="/reserve.*"><a href="/reserve"><span
+                class="glyphicon glyphicon-list-alt"></span><strong>预订</strong></a>
+        </li>
+        <li data-match-route="/balance.*"><a href="/order/list"><span
+                class="glyphicon glyphicon-print"></span><strong>结算</strong></a></li>
+        <li data-match-route="/setting.*"><a href="/setting"><span
+                class="glyphicon glyphicon-cog"></span><strong>设置</strong></a>
+        </li>
+    </ul>
+</div>
+<div class="layout-left-nav hidden-xs">
+    <div class="left-nav" bs-navbar>
+        <ul class="sidebar-nav">
+            <li data-match-route="/index"><a href="/index"><span
+                    class="glyphicon glyphicon-home"></span><strong>首页</strong></a></li>
+            <li data-match-route="/venue.*"><a href="/venue"><span
+                    class="glyphicon glyphicon-map-marker"></span><strong>场地</strong></a>
+            </li>
+            <li data-match-route="/reserve.*"><a href="/reserve"><span
+                    class="glyphicon glyphicon-list-alt"></span><strong>预订</strong></a>
+            </li>
+            <li data-match-route="/order.*"><a href="/order/list"><span
+                    class="glyphicon glyphicon-print"></span><strong>结算</strong></a></li>
+            <li data-match-route="/setting.*"><a href="/setting"><span
+                    class="glyphicon glyphicon-cog"></span><strong>设置</strong></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--
+</div>-->

@@ -1,0 +1,120 @@
+<div class="layout-top">
+    <div class="top-nav container-fluid">
+        <div class="navbar-header">
+            <a class="logo" href="/">
+                <img alt="dongker" src="/images/logo.png">
+                <span class="visible-xs-inline-block"></span>
+            </a>
+            <span class="brand">动客体育</span>
+        </div>
+        <div class="navbar-right hidden-xs">
+            <ul class="header-nav navbar-nav">
+                <li><a href="#">免费试用</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div class="layout-body">
+    <div class="container signup-page">
+        <div class="row mt30">
+            <div class="col-sm-offset-2 col-md-8">
+                <h3>欢迎试用动客－场馆预订管理系统</h3>
+            </div>
+        </div>
+        <div class="row mt30">
+            <div class="col-sm-offset-2 col-md-8">
+                <p class="title-sub">注册流程</p>
+
+                <div class="signup-steps">
+                    <ul>
+                        <li ng-class="{'active':step==1}" class=""><b>验证场馆信息</b>
+
+                            <p><span class="fa fa-caret-down"></span></p></li>
+                        <li ng-class="{'active':step==2}"><b>填写联系信息</b>
+
+                            <p><span class="fa fa-caret-down"></span></p></li>
+                        <li ng-class="{'active':step==3}"><b>等待验证开通</b>
+
+                            <p><span class="fa fa-caret-down"></span></p></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt30" ng-show="step==1" >
+            <div class="col-sm-offset-2 col-sm-6">
+                <span class="text-desc">为必填</span>
+
+                <form role="form" method="post" class="mt30 mb15" ng-submit="goNext(2)" novalidate name="form1">
+                    <div class="form-group"
+                         ng-class="{'has-error': form1.gymName.$dirty&&form1.gymName.$invalid}">
+                        <label for="gymName">您的场馆全称</label>
+                        <input type="text" class="form-control input-lg require" id="gymName" name="gymName" maxlength="50" required="" ng-model="gymName"
+                               placeholder="输入您场馆的全称" ng-change="hideShowTag()">
+                        <span class="help-block">{{form1.gymName.$dirty&&form1.gymName.$invalid?'请输入场馆名称':''}}</span>
+                    </div>
+                    <div class="form-group">
+                         <!--ng-class="{'has-error': form1.city.$dirty&&form1.city.$invalid}">-->
+                        <label for="city">您的场馆所在城市</label>
+                        <input type="text" class="form-control input-lg require" id="city" name="city" maxlength="50"  ng-model="city"
+                               value="北京市" placeholder="北京市" disabled="false">
+                        <span class="text-light-grey">目前支持开通的城市：北京市</span>
+                        <span class="help-block"><!--{{form1.city.$dirty&&form1.city.$invalid?'请输入所在城市':''}}--></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">您的场馆详细地址</label>
+                        <input type="text" class="form-control input-lg" id="address" name="address" maxlength="50"  ng-model="address"
+                               value="海淀区复兴路188号" placeholder="场馆详细地址">
+                    </div>
+                    <div class="help-exist-gym" ng-show="showTag">
+                        <p>已经存在名称为<span>"{{gymName}}"</span>的场馆</p>
+
+                        <p class="text-muted text-help">
+                            <small>地址:{{existaddress}}</small>
+                        </p>
+                        <p class="text-muted">不是您的场馆?<span class="ml15 mr5">联系我们:</span>
+                            <tel>010-33333444</tel>
+                        </p>
+                    </div>
+
+                    <button type="submit" class="btn btn-info btn-lg btn-no-radius" ng-disabled="submitting">{{submitting?'申请中...':'下一步'}}</button>
+                </form>
+            </div>
+        </div>
+        <div class="row mt30" ng-show="step==2" >
+            <div class="col-sm-offset-2 col-sm-6">
+                <span class="text-desc">为必填</span>
+
+                <form role="form" class="mt30 mb15" ng-submit="goNext(3)" novalidate="" name="form2">
+                    <div class="form-group"
+                         ng-class="{'has-error': form2.email.$dirty&&form2.email.$invalid}">
+                        <label for="email">您的邮箱</label>
+                        <input type="email" class="form-control input-lg require" id="email" name="email" maxlength="100" required="" ng-model="email"
+                               placeholder="准确填写您的邮箱">
+                        <span class="text-light-grey">在系统验证通过后，通过此邮箱登录系统，请务必准确填写</span>
+                        <span class="help-block">{{form2.email.$dirty&&form2.email.$invalid?'请输入正确的电子邮箱':''}}</span>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error': form2.mobile.$dirty&&form2.mobile.$invalid}">
+                        <label for="mobile">联系人电话</label>
+                        <input type="tel" class="form-control input-lg require" id="mobile" name="mobile" maxlength="20" ng-model="mobile"
+                               required=""
+                               placeholder="联系人电话">
+                        <span class="text-light-grey">请准确填写联系人电话，我们的工作人员将会在一周内通过此电话联系您</span>
+                        <span class="help-block">{{form2.mobile.$dirty&&form2.mobile.$invalid?'请输入正确的联系电话':''}}</span>
+                    </div>
+                    <div class="help-block">
+                        <p>提交信息后我们会在7个工作日之内通过您填写的联系电话或者邮箱联系您。</p>
+                    </div>
+
+                    <button type="submit" class="btn btn-info btn-lg btn-no-radius" ng-disabled="submitting">{{submitting?'提交中...':'提交'}}</button>
+                </form>
+            </div>
+        </div>
+        <div class="row mt30 " ng-if="step==3">
+            <div class="col-sm-offset-2 col-sm-6">
+                <p class="sigup-ok-text">我们已经收到您的试用申请,会在7个工作日之内通过您填写的联系电话或者邮箱联系您,请保持您的联系电话畅通，及时查收邮件。祝您生意兴隆，万事如意!</p>
+            </div>
+        </div>
+    </div>
+</div>

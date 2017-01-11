@@ -1,0 +1,50 @@
+<section>
+    <p class="light-grey-color">
+        <small>请上传真实的场馆图片,用户在客户端(微信)预订场地时可以更直观的了解到场馆的情况。</small>
+        <br>
+        <small>1. 图片格式为JPG、PNG；<br>
+            2. 图片大小在500K以下；<br>
+            3. 建议尺寸为320×160。
+        </small>
+    </p>
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail thumbnail-upload">
+                <img src="{{upload.length>0?upload[0].preview:'/images/upload-picture.png'}}" alt="..."  ng-click="showfileDialg()">
+                <div class="progress uploader-progress" ng-show="upload!=null&&upload.length>0?true:false">
+                    <div class="progress-bar progress-bar-info"role="progressbar " ng-show="showProcess" style="width: {{upload[0].progress}}%;">
+                        <!--<span class="sr-only">60% Complete</span>-->
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a class="btn btn-info mr15" ng-click="showfileDialg()"><input id="imgUploader" type="file" style="display: none"
+                                                                           ng-file-select="onFileSelect($files)"
+                                                                           accept="image/*">选择图片</a>
+            <a class="btn btn-info disabled" id="save" ng-click="gotoUpload()">保存</a>
+            <!--<div class="alert alert-danger mt15" role="alert" >
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>上传失败!</strong>
+            </div>-->
+            <div class="mt15" id="alerts-container"></div>
+        </div>
+    </div>
+    <div class="row">
+        <!--<div class="col-xs-6 col-md-3">
+
+            <a href="#" class="thumbnail">
+                <span class="glyphicon glyphicon-remove-circle img-remove" ></span>
+                <img src="/images/upload-picture.png" alt="...">
+            </a>
+        </div>-->
+        <div ng-repeat="image in images" class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail">
+                <span class="glyphicon glyphicon-remove-circle img-remove" ng-click="deleteImg($index,false)"></span>
+                <img src="{{image.url}}" alt="...">
+            </a>
+        </div>
+
+    </div>
+</section>

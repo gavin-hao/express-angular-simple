@@ -1,0 +1,40 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller="changeRecordCtrl">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="$hide()"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">调价纪录</b></h4>
+            </div>
+            <div class="modal-body">
+                <div class="price-adjustment">
+                    <!--<span><img src="/images/price-close.png"></span>-->
+
+                    <!--<h3>调价记录</h3>-->
+
+                    <div class="flow-path">
+                        <ul>
+                         <!--   <li>将<b>2014-12-12</b>价格调整为<span>180元</span>
+
+                                <p>2014-10-10 14:14</p></li>
+                            <li>将<b>2014-12-12</b>至<b>2014-12-21</b>价格调整为<span>180元</span>
+
+                                <p>2014-10-10 14:14</p></li>
+                            <li>将<b>2014-12-12</b>价格调整为<span>180元</span>
+
+                                <p>2014-10-10 14:14</p></li>
+                            <li>将<b>2014-12-12</b>至<b>2014-12-21</b>价格调整为<span>180元</span>
+
+                                <p>2014-10-10 14:14</p></li>-->
+                            <li ng-repeat="o in morePrice">
+                                将<b>{{o.price_start}}</b>至<b>{{o.price_end}}</b>价格调整为<span>{{o.price}}元</span>
+
+                                <!--<p>2014-10-10 14:14</p>-->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

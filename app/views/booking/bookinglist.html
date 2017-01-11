@@ -1,0 +1,96 @@
+<nav-top></nav-top>
+<div class="content">
+    <nav-left></nav-left>
+    <div class="park-content">
+        <div class="park-cont">
+            <div class="warp-text" ng-show="ishasproduct">
+                <div class="text-show">
+                    <p>产品会在这里显示，当前没有载入 请先<a href="/p/list">创建</a> </p>
+                </div>
+            </div>
+            <div class="warp-text" ng-show="isshowloading">
+                <div class="text-show">
+                    <p>正在请求数据...</p>
+                </div>
+            </div>
+            <div class="third-content" ng-show="isshowmain">
+
+                <div class="time-title">
+                    <ul class="nav nav-tabs">
+                        <li ng-repeat="dateitem in bookingModel.dateArr" ng-class="dateitem.classname">
+                            <a ng-href="javascript:void(0);" id="{{dateitem.date}}"
+                               ng-click="getproductbookinginfoForDate(dateitem.date)">
+                                <span>{{dateitem.week}}</span>{{dateitem.date}}</a></li>
+
+                    </ul>
+                </div>
+                <div class="time-content row" style="background-color: #fff;width: 90%;margin-left: 63px;">
+
+                    <div style="background-color: #fff;">
+                        <div class="time-list col-xs-1">
+                            <ul>
+                                <li ng-repeat="detailitem in bookingModel.dataArr[0].productDetail">{{detailitem.start_time}}</li>
+                                <li >{{bookingModel.lasttime}}</li>
+
+                            </ul>
+                        </div>
+                        <div class="warp-scroll col-xs-10">
+                            <div class="time-cont">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <td ng-repeat="item in bookingModel.dataArr">{{item.productname}}</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="detailitem in bookingModel.dataArr[0].productDetail" ng-init="index=$index">
+                                        <td ng-repeat="productitem in bookingModel.dataArr">
+                                            <b ng-class="productitem.productDetail[index].bookingCount>0?clickArr.indexOf(productitem.productDetail[index].detailId)>=0?'light-yellow':'light-blue':''"
+                                               ng-click="getdetailinfo(productitem.productDetail[index],productitem.productid,productitem.productname,productitem.venue_id)">
+                                                {{productitem.productDetail[index].pricedes}}</b></td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="my-reserve">
+                                <ul>
+                                    <li><b></b>可预订</li>
+                                    <li><b></b>我的预定</li>
+                                    <li><b></b>已售出</li>
+                                </ul>
+                            </div>
+                            <div class="price-rental">
+                                <p>总额：<span>￥{{allamount}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form role="form" class="form-horizontal margin-top15" ng-submit="submitOrderInfo()">
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-2">用户姓名：</label>
+
+                        <div class="col-sm-4">
+                            <input type="text" ng-model="username" class="form-control" required="请输入用户姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-sm-2">手机号码：</label>
+
+                        <div class="col-sm-4">
+                            <input type="text" ng-model="userphone" class="form-control" id="name" required="请输入手机号码">
+                        </div>
+                    </div>
+                    <div class="btn-fun">
+                        <button type="submit" class="btn btn-primary mt" ng-disable="">提交</button>
+                        <button type="button" ng-click="calceloperate()" class="btn pd">取消</button>
+                    </div>
+                    <div class="" id="alerts-container"  style="width: 610px; ">
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

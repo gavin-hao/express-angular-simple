@@ -1,0 +1,144 @@
+<nav-top></nav-top>
+<div class="content">
+    <nav-left></nav-left>
+    <div class="park-content ">
+        <div class="park-cont">
+            <div class="container">
+                <div class="venue-create-form">
+                    <form role="form" class="">
+                        <div class="form-group">
+                            <div class="input-group col-xs-8">
+                                <input class="form-control venue-name" type="number" placeholder="#号场地" required=""
+                                       ng-model="newVenue.name">
+
+                                <div class="input-group-btn ">
+                                    <button type="button" class="btn-default form-control change-btn"
+                                            id="indoor"
+                                            name="indoor"
+                                            ng-model="newVenue.indoor" required=""
+                                            ng-options="m.value as m.name for m in indoorProp"
+                                            data-placeholder="室内/室外" bs-select><span class="caret"></span>
+                                    </button>
+                                </div>
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn-default form-control change-btn" id="floor"
+                                            name="floor"
+                                            ng-model="newVenue.floor" required=""
+                                            ng-options="m.value as m.name for m in floorProp"
+                                            data-placeholder="地板类型" bs-select><span class="caret"></span>
+                                    </button>
+                                </div>
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn-default form-control change-btn"
+                                            id="standerd"
+                                            name="standerd"
+                                            ng-model="newVenue.standerd" required=""
+                                            ng-options="m.value as m.name for m in standerdProp"
+                                            data-placeholder="全场/半场" bs-select><span class="caret"></span>
+                                    </button>
+                                </div>
+
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-success"><span
+                                            class="glyphicon glyphicon-plus"></span>创建
+                                    </button>
+                                </div>
+
+                            </div>
+                            <input type="hidden" ng-model="newVenue.indoor" name="indoor">
+                            <input type="hidden" ng-model="newVenue.floor" name="floor">
+                            <input type="hidden" ng-model="newVenue.standerd" name="standerd">
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="venue-list-opts">
+                    已创建的场地
+                </div>
+                <div class="venue-list">
+                    <ul>
+                        <li class="bb-line">
+                            <div class="venue-time">
+                                <div><span>08:00</span></div>
+                                <div><span>09:00</span></div>
+                                <div><span>10:00</span></div>
+                                <div><span>11:00</span></div>
+                                <div><span>12:00</span></div>
+                            </div>
+                        </li>
+                        <li class="bb-line">
+                            <div class="venue-item">
+                                <div class="venue-name">
+                                    <ul class="nav nav-pills" role="tablist">
+
+                                        <li role="presentation" class="dropdown">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                1号场地 <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a>设置价格</a></li>
+                                                <li><a>修改价格</a></li>
+                                                <li><a>修改库存</a></li>
+                                            </ul>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                                <div class="venue-price">
+                                    <div>200</div>
+                                    <div>200</div>
+                                    <div>200</div>
+                                    <div>200</div>
+                                    <div>200</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="bb-line">
+                            <div class="venue-item ">
+                                <div class="venue-name">2号场地</div>
+                                <div class="venue-price">
+                                    <div>未设置</div>
+                                    <div>未设置</div>
+                                    <div>未设置</div>
+                                    <div>未设置</div>
+                                    <div>未设置</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-if="!loading&&!hasVenue">
+                    <div class="page-help">
+                        <div class="page-help-content">
+                            <p>
+                                还没有添加场地信息，马上创建
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="!loading&&hasVenue">
+                    <div class="page-help">
+                        <div class="page-help-content">
+
+                            <ol>
+                                <li>
+                                    这里能看到所有的场地信息,您可以
+                                </li>
+                                <li>添加新的场地信息</li>
+                                <li>
+                                    设置场地每个时段价格，然后点击“上线”后，则该场地可以接受预订
+                                </li>
+                            </ol>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

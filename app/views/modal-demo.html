@@ -1,0 +1,41 @@
+<div class="popover" tabindex="-1" ng-show="content">
+    <div class="arrow"></div>
+    <h3 class="popover-title" ng-bind-html="title" ng-show="title"></h3>
+    <div class="popover-content">
+        <form name="popoverForm" role="form" class="form-horizontal">
+            <p ng-bind-html="content" style="min-width:300px;"></p>
+            <pre>2 + 3 = <span ng-cloak>{{ 2 + 3 }}</span></pre>
+            <div class="form-group">
+                <label></label>
+                <div class="input-group">
+                    <div class="input-group-addon">@</div>
+                    <input class="form-control" type="email" placeholder="Enter email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label"><b>*</b>联系人111：</label>
+                <button type="button" class="btn-default form-control change-btn" id="standerd" name="standerd"
+                        ng-model="standerd" required=""
+                        ng-options="st for st in ['全场','半场']"
+                        data-placeholder="场地大小" bs-select><span class="caret"></span></button>
+                <button type="button" class="btn-default form-control change-btn" id="standerd" name="standerd"
+                        ng-model="standerd" required=""
+                        ng-options="st for st in ['全场','半场']"
+                        data-placeholder="场地大小" bs-select><span class="caret"></span></button>
+
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label"><b>*</b>联系人：</label>
+
+                <div class="">
+                    <input type="text" class="form-control" id="name"
+                           placeholder="请输入名称">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-danger" ng-click="$hide()">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="popover.saved=true;$hide()">Save changes</button>
+            </div>
+        </form>
+    </div>
+</div>

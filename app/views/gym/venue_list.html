@@ -1,0 +1,60 @@
+<div class="rs_sub_nav_fluid row">
+    <div class="rs_sub_nav col-md-1 col-sm-1 col-lg-2 hidden-xs hidden-sm">
+        <ul id="gymTabs" class="">
+            <li class=""><a href="/gym/basic/5"><span>基本信息</span></a>
+                <ul class="subnav_items">
+                    <li></li>
+                </ul>
+            </li>
+            <li class="active"><a href="/gym/venue_list?gym_id=5"><span>场地信息</span></a>
+                <ul class="subnav_items">
+                    <li></li>
+                </ul>
+            </li>
+            <li class=""><a href="/gym/qualification"><span>资质信息</span></a>
+                <ul class="subnav_items">
+                    <li></li>
+                </ul>
+            </li>
+            <li class=""><a href="/gym/balance"><span>签约结算信息</span></a>
+                <ul class="subnav_items">
+                    <li></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="rs_layout_container col-md-11 col-sm-11 col-lg-10 ">
+
+        <div class="col-sm-8">
+            <a class="btn btn-success" href="/gym/venue"><i class="glyphicon glyphicon-plus"></i><span>创建场地信息</span></a>
+        </div>
+        <div class="rs_page_container gym_tab_content">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>场地名称</th>
+                    <th>全场半场</th>
+                    <th>地板类型</th>
+                    <th>室内室外</th>
+                    <th>是否可用</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in viewModel">
+                    <td>{{$index}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.standerd | standerdFilter}}</td>
+                    <td>{{item.floor_type | floorFilter}}</td>
+                    <td>{{item.indoor | indoorFilter}}</td>
+                    <td>{{item.available==1?'是':'否'}}</td>
+                    <td><a href="/gym/venue?venue_id={{item.id}}">编辑</a></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

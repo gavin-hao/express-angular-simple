@@ -1,0 +1,105 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller="getOrderDetail">
+    <div class="modal-dialog order-popup-wd">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="$hide()"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">订单号<b>{{orderDetailModel.order_id}}</b></h4>
+            </div>
+            <div class="modal-body ">
+                <div class="order-popup">
+                    <div class="order-popup-content">
+                        <div class="order-left">
+
+                            <dl class="dl-horizontal">
+                                <dt>产品名称</dt>
+                                <dd><b>{{orderDetailModel.order_typedes}}</b></dd>
+                                <dt>预订日期</dt>
+                                <dd>{{orderDetailModel.bookingdate}}</dd>
+                                <dt>订单状态</dt>
+                                <dd><b>{{orderDetailModel.order_statedes}}</b></dd>
+                                <dt>下单时间</dt>
+                                <dd>{{orderDetailModel.order_createtime}}</dd>
+                                <dt>订单金额</dt>
+                                <dd><span>￥{{orderDetailModel.order_amount}}</span></dd>
+                                <dt>用户</dt>
+                                <dd>{{orderDetailModel.order_username}}</dd>
+                                <dt>用户手机</dt>
+                                <dd>{{orderDetailModel.order_userphone}}</dd>
+                            </dl>
+
+                        </div>
+                        <div class="order-right table-responsive">
+                        <table class="table reserve-order">
+                        <thead>
+                        <tr>
+                        <td>预订时段</td>
+                        <td>场地属性</td>
+                        <td>场地号</td>
+                        <td>订单数量</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in orderDetailModel.order_detail">
+                            <td>{{item.start_time}}--{{item.end_time}}</td>
+                            <td>{{item.product_detail.indoor | indoorFilter}}{{item.product_detail.floortype | floorFilter}}{{item.product_detail.floodlit | standerdFilter}}</td>
+                            <td>{{item.venue_name}}</td>
+                            <td>0</td>
+                        </tr>
+                        </tbody>
+                        </table>
+
+                        <button class="btn btn-primary" ng-click="$hide()" data-dismiss="modal">确定</button>
+                        <button class="btn btn-success">改签日期</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--
+
+<div class="order-popup" ng-controller="getOrderDetail">
+    <h3>订单号<b>{{orderDetailModel.order_id}}</b></h3>
+    <div class="order-popup-content">
+        <div class="order-left">
+            <ul>
+                <li><strong>产品类型</strong><b>{{orderDetailModel.order_typedes}}</b></li>
+                <li><strong>预订日期</strong>{{orderDetailModel.bookingdate}}</li>
+                <li><strong>订单状态</strong><b>{{orderDetailModel.order_statedes}}</b></li>
+                <li><strong>下单时间</strong>{{orderDetailModel.order_createtime}}</li>
+                <li><strong>订单金额</strong><span>￥{{orderDetailModel.order_amount}}</span></li>
+                <li><strong>用户</strong>{{orderDetailModel.order_username}}</li>
+                <li><strong>用户手机</strong>{{orderDetailModel.order_username}}</li>
+            </ul>
+        </div>
+        <div class="order-right table-responsive">
+            <table class="table" style="border-radius:5px;">
+                <thead>
+                <tr >
+                    <td>预订时段</td>
+                    <td>场地属性</td>
+                    <td>场地号</td>
+                    <td>订单数量</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in orderDetailModel.order_detail">
+                    <td>{{item.start_time}}--{{item.end_time}}</td>
+                    <td>{{item.product_detail.indoor | indoorFilter}}{{item.product_detail.floortype | floorFilter}}{{item.product_detail.floodlit | standerdFilter}}</td>
+                    <td>{{item.venue_name}}</td>
+                    <td>0</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <button class="btn btn-primary" ng-click="closeModal()">确定</button>
+            <button class="btn btn-success">改签日期</button>
+        </div>
+    </div>
+</div>
+-->

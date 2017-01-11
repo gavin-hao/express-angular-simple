@@ -1,0 +1,125 @@
+<div class="rs_sub_nav_fluid row">
+    <div class="rs_sub_nav col-md-1 col-sm-1 col-lg-2 hidden-xs hidden-sm">
+        <ul id="gymTabs" class="">
+            <li class="active"><a href="/gym/basic/5"><span>基本信息</span></a>
+                <ul class="subnav_items">
+                    <li></li>
+                </ul>
+            </li>
+            <li class=""><a href="/gym/venue_list?gym_id=5"><span>场地信息</span></a>
+                <ul class="subnav_items">
+                    <li></li>
+                </ul>
+            </li>
+            <li class=""><a href="/gym/qualification"><span>资质信息</span></a>
+                <ul class="subnav_items">
+                    <li></li>
+                </ul>
+            </li>
+            <li class=""><a href="/gym/balance"><span>签约结算信息</span></a>
+                <ul class="subnav_items">
+                    <li></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="rs_layout_container col-md-11 col-sm-11 col-lg-10 ">
+        <div class="rs_page_container gym_tab_content">
+            <form class="form-horizontal" role="form" ng-submit="processForm()">
+                <input type="hidden" id="id" name="id" ng-model="viewModel.id"/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="name">场馆名称</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="场馆名称" ng-model="viewModel.name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="city">所在城市</label>
+
+                    <div class="col-sm-8">
+                        <select ng-model="province" id="province" name="province"
+                                ng-change="changeProvince()">
+                            <option value="">-- 请选择 --</option>
+                            <option ng-repeat="role in provinceModel" value="{{role.code}}" ng-selected="role.code == viewModel.province">{{role.name}}</option>
+                        </select>
+                        -
+                        <select ng-model="city" id="city" name="city"
+                                ng-change="changeCity()">
+                            <option value="">-- 请选择 --</option>
+                            <option ng-repeat="role in cityModel" value="{{role.code}}" ng-selected="role.code == viewModel.city">{{role.name}}</option>
+                        </select>
+                        -
+                        <select ng-model="area" id="area" name="area">
+                            <option value="">-- 请选择 --</option>
+                            <option ng-repeat="role in areaModel" value="{{role.code}}" ng-selected="role.code == viewModel.area">{{role.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="address">场馆地址</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control input-lg" id="address" name="address" placeholder="场馆地址" ng-model="viewModel.address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="description">简介</label>
+
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="description" name="description" placeholder="简介"  ng-model="viewModel.description">
+
+                        </textarea>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tel" class="col-sm-2 control-label">电话</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="tel" name="tel" placeholder="Tel" ng-model="viewModel.tel">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cover_img_url" class="col-sm-2 control-label">封面图片</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="cover_img_url" name="cover_img_url" placeholder="Cover-Image" ng-model="viewModel.cover_img_url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="logo_img_url" class="col-sm-2 control-label">LOGO图片</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="logo_img_url" name="logo_img_url" placeholder="Logo-Image" ng-model="viewModel.logo_img_url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contact_name" class="col-sm-2 control-label">联系人</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="contact_name" name="contact_name" placeholder="Tel" ng-model="viewModel.contact_name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="contact_tel" class="col-sm-2 control-label">联系电话</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="contact_tel" name="contact_tel" placeholder="Tel" ng-model="viewModel.contact_tel">
+                    </div>
+                </div>
+                <div class="form-group" ng-hide="true">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

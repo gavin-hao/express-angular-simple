@@ -1,0 +1,154 @@
+<!--二级页2-2场地服务信息-->
+        <div bs-collapse>
+<div class="classify-information col-lg-offset-1" bs-collapse-toggle>
+    <div class="pull-left dot-list">
+        <b>场地信息</b>
+        <span class="caret dot-right"></span>
+    </div>
+    <div class="pull-right dot">
+        <span></span>
+        <b></b>
+    </div>
+</div>
+<div class="second-form-cont" bs-collapse-target>
+<div class="col-lg-offset-1">
+
+<div class="form-group">
+    <!--<label for="venue" class="control-label col-sm-2"><b>*</b>场地信息：</label>-->
+
+    <div class="col-sm-8">
+
+        <!--{{viewModel.venues}}-->
+        <div class="record" ng-repeat="v in viewModel.venues">
+            <input type="text" class="form-control wd" id="venue-{{$index}}" readonly
+                   ng-value="v.name"/><span>号场地</span>
+            <input type="text" class="form-control wt" id="standerd-{{$index}}" readonly
+                   ng-value="v.standerd|standerdFilter"/>
+            <input type="text" class="form-control wt" id="floor-{{$index}}" readonly
+                   ng-value="v.floor_type|floorFilter"/>
+            <input type="text" class="form-control wt" id="indoor-{{$index}}" readonly
+                   ng-value="v.indoor|indoorFilter"/>
+            <!--<a ng-click="modifyVenue(v)">修改</a>-->
+            <a name="continueAdd" id="goon-{{$index}}" ng-show="{{viewModel.venues.length-1}}==={{$index}}"
+               ng-click="goonAdd($index,v)">继续添加</a>
+            <a ng-model="v" ng-click="deletevenue($index,v.id)">删除</a>
+            <!--<button type="button" class="btn btn-default" data-html="1" data-multiple="1" data-animation="am-flip-x" ng-options="icon in [1,2,3]" bs-select="">
+                Action <span class="caret"></span>
+            </button>-->
+        </div>
+
+        <div id="savenew" ng-show="isshow" name="savenew" class="record">
+            <form name="savenewform" role="form" ng-submit="submitVenueForm()">
+                <input type="text" class="form-control" id="venuename" ng-model="viewModel.venuename"
+                       placeholder="号场地" style="width:10%;display:inline;" required=""><span>号场地</span>
+
+                <div class="btn-group">
+                    <!--<button type="button" class="btn btn-input">全场/半场</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" ng-click="setStandard(1)">全场</a></li>
+                        <li><a href="#" ng-click="setStandard(0)">半场</a></li>
+                        &lt;!&ndash;<li><a href="#">其他</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">分离的链接</a></li>&ndash;&gt;
+                    </ul>-->
+                    <select ng-model="viewModel.standerd" id="standerd" name="standerd" required="">
+                        <option value="">-- 请选择 --</option>
+                        <option ng-repeat="role in standerdModel" value="{{role.value}}"
+                                ng-selected="role.value == viewModel.standerd">{{role.text}}
+                        </option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <!--<button type="button" class="btn btn-input">地板类型</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" ng-click="setFloorType(0)">木地板</a></li>
+                        <li><a href="#" ng-click="setFloorType(1)">塑胶地板</a></li>
+                        <li><a href="#" ng-click="setFloorType(2)">水泥地</a></li>
+                        &lt;!&ndash;<li class="divider"></li>
+                        <li><a href="#">分离的链接</a></li>&ndash;&gt;
+                    </ul>-->
+                    <select ng-model="viewModel.floor_type" id="floor_type" name="floor_type" required="">
+                        <option value="">-- 请选择 --</option>
+                        <option ng-repeat="role in floorTypeModel" value="{{role.value}}"
+                                ng-selected="role.value == viewModel.floor_type">{{role.text}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="btn-group">
+                    <!--<button type="button" class="btn btn-input">室内/室外</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle"
+                            data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" ng-click="setIndoor(0)">室内</a></li>
+                        <li><a href="#" ng-click="setIndoor(1)">室外</a></li>
+                        &lt;!&ndash;<li><a href="#">其他</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">分离的链接</a></li>&ndash;&gt;
+                    </ul>-->
+                    <select ng-model="viewModel.indoor" id="indoor" name="indoor" required="">
+                        <option value="">-- 请选择 --</option>
+                        <option ng-repeat="role in indoorModel" value="{{role.value}}"
+                                ng-selected="role.value == viewModel.indoor">{{role.text}}
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-pd">保存</button>
+                <button type="button" class="btn btn-primary btn-pd" ng-click="hideSave()">取消</button>
+            </form>
+        </div>
+        <div id="modifyVenue" ng-show="ismodify" class="record">
+            <form name="modifyform" role="form" ng-submit="modifyVenueForm()" novalidate>
+                <input type="number" class="form-control" id="modifyname" name="modifyname" ng-model="modifyModel.name"
+                       placeholder="号场地" style="width:10%;display: inline;" required><span>号场地</span>
+
+                <div class="btn-group">
+                    <select ng-model="modifyModel.standerd">
+                        <option value="">-- 请选择 --</option>
+                        <option ng-repeat="role in standerdModel" value="{{role.value}}"
+                                ng-selected="role.value == modifyModel.standerd">{{role.text}}
+                        </option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <select ng-model="modifyModel.floor_type">
+                        <option value="">-- 请选择 --</option>
+                        <option ng-repeat="role in floorTypeModel" value="{{role.value}}"
+                                ng-selected="role.value == modifyModel.floor_type">{{role.text}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="btn-group">
+                    <select ng-model="modifyModel.indoor">
+                        <option value="">-- 请选择 --</option>
+                        <option ng-repeat="role in indoorModel" value="{{role.value}}"
+                                ng-selected="role.value == modifyModel.indoor">{{role.text}}
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit" ng-disabled="modifyform.$invalid" class="btn btn-primary btn-pd">保存修改</button>
+                <div ng-if="modifyform.modifyname.$error.required">场地名称不能为空</div>
+                <div ng-if="!modifyform.modifyname.$error.required&&modifyform.modifyname.$error.number">场地名称必须是数字</div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+    </div>

@@ -1,0 +1,137 @@
+<nav-top></nav-top>
+<div class="content">
+    <nav-left></nav-left>
+    <div class="park-content">
+        <div class="park-cont">
+            <div class="fourth-content container-fluid">
+                <h3></h3>
+
+                <div ng-show="!prodAdding" class="tab-title">
+                    <p>
+                        <!--<button type="button" class="btn btn-info" data-placement="right" data-content=""  bs-popover="" data-template="/views/prod/addproduct.html?id=1">添加产品</button>-->
+                        <!--<button type="button" class="btn btn-info" title="创建一个新产品"
+                                data-placement="bottom" bs-popover data-animation="am-flip-x" data-container="body"
+                                data-template="/views/prod/addproduct.html">创建一个新产品
+                        </button>-->
+                        <button type="button" class="btn btn-info" ng-click="showCreateForm()" title="创建一个新产品">创建一个新产品
+                        </button>
+
+                    </p>
+
+                    <div ng-if="!loading&&hasProd" class="tab-right">
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <label>产品名称：</label>
+                                <select class="form-control">
+                                    <option>产品名称</option>
+                                    <option>产品名称</option>
+                                    <option>产品名称</option>
+                                    <option>产品名称</option>
+                                    <option>产品名称</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>场地属性：</label>
+                                <select class="form-control">
+                                    <option>场地属性</option>
+                                    <option>场地属性</option>
+                                    <option>场地属性</option>
+                                    <option>场地属性</option>
+                                    <option>场地属性</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>状态：</label>
+                                <select class="form-control">
+                                    <option>状态1</option>
+                                    <option>状态1</option>
+                                    <option>状态1</option>
+                                    <option>状态1</option>
+                                    <option>状态1</option>
+                                </select>
+                                <input type="text" class="form-control" id="sdate" name="sdate"
+                                       ng-model="viewModel.sdate" data-autoclose="1"
+                                       bs-datepicker/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">搜索</button>
+                        </form>
+                    </div>
+                </div>
+                <div ng-if="loading" class="tab-content">
+                    <div class="warp-text">
+                        <div class="text-show">
+                            <p>loading...</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div ng-show="!prodAdding" class="tab-content">
+                    <div>
+                        <div ng-if="!loading&&!hasProd" class="warp-text">
+                            <div class="text-show">
+                                <p>所有产品会在这里显示， 点击“<a ng-click="showCreateForm()">创建一个新产品</a>”按钮来创建</p>
+                            </div>
+
+                        </div>
+                        <div ng-if="!loading&&hasProd" class="table-responsive">
+                            <table class="table table-hover product-table">
+                                <thead>
+                                <tr>
+                                    <td></td>
+                                    <td>产品类别</td>
+                                    <td>产品名称</td>
+                                    <td>场地编号</td>
+                                    <td>时段</td>
+                                    <td></td>
+                                    <td>价格</td>
+                                    <td></td>
+                                    <td>产品日期</td>
+                                    <td>状态</td>
+                                    <td>操作</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in proModel">
+                                    <td>{{$index}}</td>
+                                    <td><span>{{item.products[0].product_type|productTypeFilter}}预定</span></td>
+                                    <td><span>{{item.products[0].product_name}}</span></td>
+                                    <td>{{item.products[0].venueNames.join(',')}}</td>
+                                    <!--<td>{{item.start_time}}点-{{item.end_time}}点</td>-->
+                                    <td><i ng-repeat="h in item.products">{{h.start_time}}点-{{h.end_time}}点</i></td>
+                                    <!--<td><img src="/images/add-edit.png"  title="添加时段"
+                                             data-placement="bottom" bs-popover data-animation="am-flip-x"
+                                             data-template="/views/prod/addtime.html"/>{{itm.product_id}}</td>-->
+                                    <td><img src="/images/add-edit.png" title="添加时段" ng-click="open(item)"/></td>
+                                    <!--<td><span ng-show="item.price==0"><a ng-click="setprice(item)">设置</a></span><span ng-show="item.price!=0">{{item.price}}/小时</span></td>-->
+                                    <td><i ng-repeat="h in item.products"><i ng-show="h.price==0||h.price==null"
+                                                                             ng-click="setprice(h)"
+                                                                             style="color: red">添加价格</i>{{h.price?h.price+'/小时':''}}</i>
+                                    </td>
+                                    <td><img src="/images/warn.png" ng-repeat="h in item.products"
+                                             ng-click="showMorePrice(h)"/></td>
+                                    <td><p ng-repeat="h in item.products">
+                                        <b>{{h.price_starttime}}</b><b>{{h.price_endtime}}</b></p></td>
+                                    <td><p ng-repeat="h in item.products">{{h.available|productStateFilter}}</p></td>
+                                    <td><p ng-repeat="h in item.products">
+                                    <span ng-show="h.available!=1&&$index==0"
+                                          ng-click="setProductStatus(item.product_id,1)">上线</span>
+                                    <span ng-show="h.available==1&&$index==0"
+                                          ng-click="setProductStatus(item.product_id,2)">下线</span>
+                                        <span ng-show="h.parent_id==0" ng-click="editprice(item,h)">维护价格</span>
+                                        <span ng-click="editrePertory()">维护库存</span>
+                                        <span ng-click="deleteproduct(h.id,h.available)">删除</span></p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div ng-show="prodAdding" ng-include="'/views/prod/addprod.html'"></div>
+    </div>
+</div>

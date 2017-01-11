@@ -1,0 +1,18 @@
+<div class="message message-notice">
+    <div class="info-box">
+        <div ng-if="!messageList||messageList.length<1">暂时没有新消息</div>
+        <ul ng-if="messageList&&messageList.length>0">
+
+            <li ng-repeat="m in messageList">
+                <span class="time">{{m.create_time|date:'shortTime'}}</span>
+                <button type="button" class="close" ng-click="clearNotice(m.id,$index)"><span>&times;</span><span
+                        class="sr-only">Close</span>
+                </button>
+
+                <p class="message-content" ng-click="showMessage()">{{m.title}}</p>
+            </li>
+        </ul>
+        <a class="btn btn-primary btn-sm btn-block" href="/setting/message/0">查看全部</a>
+    </div>
+</div>
+

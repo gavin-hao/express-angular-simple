@@ -1,0 +1,117 @@
+<nav-top></nav-top>
+<div class="content">
+    <nav-left></nav-left>
+    <div class="park-content">
+        <div class="park-cont">
+            <div class="fourth-content">
+                <h3>Product management</h3>
+
+                <div class="tab-title">
+                    <p>
+                        <!--<button type="button" class="btn btn-lg btn-danger" title="popover"-->
+                        <!--data-placement="bottom" data-content="dasfsdfdg"-->
+                        <!--data-template="/views/modal-demo.html" data-animation="am-flip-x" bs-popover>Custom Popover-->
+                        <!--</button>-->
+                        <button type="button" class="btn btn-info" data-content="dasfsdfdg" title="popover"
+                                data-placement="bottom" bs-popover data-animation="am-flip-x"
+                                data-template="/views/popover-demo.html">添加产品
+                        </button>
+                    </p>
+
+                </div>
+                <div class="tab-content">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <td></td>
+                                <td>产品类别</td>
+                                <td>产品名称</td>
+                                <td>场地编号</td>
+                                <td>时段</td>
+                                <td></td>
+                                <td>价格</td>
+                                <td></td>
+                                <td>产品日期</td>
+                                <td>状态</td>
+                                <td>操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div ng-controller="SwichController">
+                <select ng-model="selection" ng-options="item for item in items">
+                </select>
+                <tt>selection={{selection}}</tt>
+                <hr/>
+                <div class="animate-switch-container"
+                     ng-switch on="selection">
+                    <div class="animate-switch" ng-switch-when="settings">Settings Div</div>
+                    <div class="animate-switch" ng-switch-when="home">Home Span</div>
+                    <div class="animate-switch" ng-switch-default>default</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <div class="edit-price" style="margin: 55px 0px 0px 118px;">
+            <div class="row">
+
+                <div class="col-md-3 text-center">
+                    <div class="btn-group">
+                        <button class="btn btn-primary" ng-click="prev()"><span class="glyphicon glyphicon-chevron-left"></span></button>
+                        <button class="btn btn-default" ng-click="view.setDate()">今天</button>
+                        <button class="btn btn-primary" ng-click="view.next()"><span class="glyphicon glyphicon-chevron-right"></span></button>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">{{view.title}}</div>
+                <div class="col-md-4 text-center">
+                    <div class="btn-group">
+                        <label class="btn btn-primary ng-untouched ng-valid ng-dirty" ng-class="{'active':view.name=='year'}" ng-model="view.name" ng-click="changeView('year')">年</label>
+                        <label class="btn btn-primary ng-untouched ng-valid ng-dirty" ng-model="view.name" ng-class="{'active':view.name=='month'}" ng-click="changeView('month')">月</label>
+                        <label class="btn btn-primary ng-untouched ng-valid ng-dirty" ng-model="view.name" btn-radio="'week'">周</label>
+                        <label class="btn btn-primary ng-untouched ng-valid ng-dirty" ng-model="view.name" btn-radio="'day'">日</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="price-content">
+                <div class="price-table" ng-switch="view.name">
+                    <table class="table table-bordered time-table animate-switch" ng-switch-when="month">
+                        <thead>
+                        <tr>
+                            <td ng-repeat="label in view.labels track by $index">{{label}}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="(i, row) in view.rows">
+                            <td ng-repeat="(j, el) in row">
+                                <p ng-class="{'day-selected':el.selected }" ng-disabled="el.disabled" ng-click="select(el.date)">
+                                    <span ng-class="{'badge':el.isToday&& !el.selected,'muted':el.muted}">{{el.label}}</span><br><em ng-if="el.events">{{el.events.length>0?el.events.length:''}}</em></p>
+                          </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered time-table animate-switch" ng-switch-when="year">
+
+                        <tr ng-repeat="(i, row) in view.rows">
+                            <td ng-repeat="(j, el) in row">
+                                <p ng-class="{'day-selected':el.selected }" ng-disabled="el.disabled" ng-click="select(el.date)">
+                                    <span ng-class="{'badge':el.isToday&& !el.selected,'muted':el.muted}">{{el.label}}</span><br><em ng-if="el.events">{{el.events.length>0?el.events.length:''}}</em></p>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="layout-top" ng-if="isAuthenticated">
+    <div class="top-nav container-fluid open">
+        <div class="navbar-header">
+            <a class="logo" href="/">
+                <img alt="dongker" src="/images/logo.png">
+                    <span class="visible-xs-inline-block"><i ng-click="showMenu=true" class="icon fa"
+                                                             ng-class="{'fa-angle-down':!showMenu,'fa-angle-up':showMenu}"></i></span>
+            </a>
+            <span class="brand">{{gymName}}</span>
+        </div>
+        <div class="navbar-right hidden-xs">
+            <ul class="header-nav navbar-nav">
+                <li class="dropdown" ng-class="{'open':noticeList&&noticeList.length>0}"><a href="#"><span
+                        class="fa fa-bell" bs-tooltip="" data-title="{{indicator['notice']}}个新提醒"
+                        data-placement="bottom"></span><span class="point" style="visibility:hidden"></span></a>
+
+                    <div class="message">
+                        <div class="alarm-box">
+                            <div><span class="icon"></span></div>
+
+                            <div class="alarm-content">
+                                <p>
+                                    <b>{{noticeList.create_time|date:'medium'}}</b>
+                                    <b>{{noticeList.title}}</b></p>
+
+                                <p><span title="{{noticeList.content}}">{{noticeList.content}}</span></div>
+                            <div class="alarm-opt">
+                                <button class="btn btn-default" ng-click="clearNotice(noticeList.id)">清除</button>
+                            </div>
+                            <div><strong>1/{{noticeList.length}}</strong><a href="/setting/notice/0">查看全部</a></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" bs-dropdown="" data-animation="am-flip-x"
+                       data-template="/views/message_tpl.html" data-autoclose=true href="#" ng-click=""
+                       data-placement="bottom-right" data-delay="{ show: 500, hide: 100 }">
+                        <span class="fa fa-envelope" bs-tooltip="" data-title="{{indicator['msg']}}条新消息"
+                              data-placement="bottom"></span>
+                        <i class="point" ng-show="indicator['msg']&&indicator['msg']>0"></i></a>
+
+                    <!-- <div class="message">
+                         <div class="info-box">
+                             <ul>
+                                 <li>
+                                     <span class="time">23:00</span>
+                                     <button type="button" class="close"><span
+                                             aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                        </button>
+
+                                        <p class="message-content">一个新的订场</p>
+                                    </li>
+                                    <li>
+                                        <span class="time">23:00</span>
+                                        <button type="button" class="close"><span
+                                                aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                        </button>
+
+                                        <p class="message-content">一个新的订场一个新的订场一个新的订场一个新的订场一个新的订场</p>
+                                    </li>
+                                </ul>
+                                <button class="btn btn-primary btn-sm btn-block">查看全部</button>
+                            </div>
+                        </div>-->
+                </li>
+                <li><span class="divider-vertical"></span></li>
+                <li class="dropdown">
+                    <a class="user dropdown-toggle" bs-dropdown="dropdown" data-animation="am-flip-x" href="#"><span
+                            class="fa fa-user"></span><b>{{user.username}}</b><i
+                            class="icon fa fa-angle-down"></i>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

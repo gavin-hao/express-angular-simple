@@ -1,0 +1,1254 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+    background-color:#F2F2F2;
+}
+
+#HiPark {
+    font-family:"Microsoft YaHei";
+    width:100%;
+    box-sizing:content-box;
+}
+
+/*========头部================*/
+
+.head-park {
+    position:fixed;
+    z-index:999;
+    height:51px;
+    width:100%;
+    background-color:#FFF;
+    border-bottom:1px solid #D2D2D2;
+
+}
+
+.head-cont {
+    width:95%;
+    height:51px;
+    line-height:51px;
+    margin:0 auto;
+}
+
+.head-left {
+    float:left;
+}
+
+.head-left h3{
+    float:left;
+}
+
+.head-left h3 img {
+    display:inline-block;
+    margin-top:-14px;
+}
+
+.head-right {
+    float:right;
+    position:relative;
+    z-index:999;
+}
+
+.head-right ul {
+    clear:both;
+}
+
+.head-right ul li {
+    position:relative;
+}
+
+.head-right ul li dl {
+    position:absolute;
+}
+
+.head-right ul li a img {
+    vertical-align:middle;
+}
+
+.head-right ul li a > b {
+    font-weight:normal;
+    font-size:12px;
+    margin-left:7px;
+}
+
+.head-right ul li dl {
+    display:none;
+    background-color:#03C;
+}
+
+.head-right ul li dl dd {
+    font-size:12px;
+    line-height:20px;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.head-right ul li dl dd > a {
+    color:#FFF;
+}
+
+/*===============内容区域========================*/
+.form-horizontal .form-group {
+    margin: 13px 0px 13px 24px;
+    *margin: 13px 0px 13px 57px;
+}
+
+
+.content {
+    width:100%;
+}
+
+.form-group label {
+    color:#949494;
+}
+
+.park-content {
+    clear:both;
+    height:1500px;
+    margin-left:63px;
+    position:relative;
+    top:51px;
+    background-color:#F2F2F2;
+}
+
+.park-cont {
+    margin:0 auto;
+    background-color:#F2F2F2;
+    box-sizing:content-box;
+}
+
+.park-title {
+    width:63px;
+    position:fixed;
+    top:51px;
+    left:0;
+    height:700px;
+    background-color:#00F;
+}
+
+.park-title ul {
+    margin:0;
+}
+
+.park-title ul li {
+    text-align:center;
+    /*margin-bottom:12px;*/
+    width:63px;
+    height:46px;
+    line-height:46px;
+    cursor:pointer;
+}
+
+.park-title ul li > a {
+    display: block;
+    width:63px;
+    height:46px;
+    padding-bottom:12px;
+}
+
+.park-title > ul li > a.active {
+    background-color:#fff;
+}
+/*================核心内容部分=================*/
+
+/*============首页内容===============*/
+.home-cont {
+    width:90%;
+    margin-left:63px;
+    display:block;
+}
+
+
+.home-cont > h3 {
+    height:46px;
+    font-size:16px;
+    color:#737373;
+    font-weight:bold;
+    margin:0;
+    line-height:46px;
+}
+
+
+.list-group {
+    float:left;
+    width:48%;
+    margin-right:10px;
+}
+
+.list-group ul,
+.list-group ol {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin:0;
+    border-radius:5px;
+}
+
+.list-group ol {
+    margin-top:9px;
+}
+
+.list-group li > h3 {
+    font-family:"Microsoft YaHei";
+    color:#0B70C4;
+    font-weight:bold;
+    font-size:14px;
+    margin:0;
+
+}
+.list-group-itemborder {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    width:95%;
+    margin:0 auto;
+    margin-bottom: -1px;
+    border-bottom: 1px solid #ddd;
+}
+
+.list-group-item {
+    display: block;
+    padding: 10px 15px;
+    margin:0 auto;
+    margin-bottom: -1px;
+    border-bottom: 1px solid #ddd;
+    border-left:0;
+    border-top:0;
+    border-right:0;
+}
+
+.list-group-itemborder:last-child {
+    border-bottom:0;
+}
+
+.list-group-itemborder small {
+    margin-left:-17px;
+}
+
+.list-group-itemborder small b img {
+    margin-right:5px;
+}
+
+.list-group-itemborder span {
+    color:#0069C7;
+    font-size:12px;
+    font-weight:bold;
+    margin-left:20px;
+}
+
+.form-control {
+    display:inline;
+    width:90%;
+}
+
+.verification{
+    background-color:#F4F4F4;
+    width:65%;
+    display:inline;
+}
+
+.form-group {
+    margin:13px 0px 13px 54px;
+}
+
+.btn{
+    padding:6px 19px;
+    margin-left:8px;
+}
+
+.head-right span .btn {
+    padding:2px 5px;
+    margin:0;
+    margin-left:10px;
+}
+
+@media (max-width: 835px) {
+    .list-group {
+        clear:both;
+        width:317px;
+    }
+    /*.second-content {
+        width:650px;
+    }
+
+    .form-control{
+        width:60%;
+    }
+
+    .tel2 {
+        width:20%;
+    }	*/
+}
+
+.home-cont .form-group {
+    margin: 13px 0px 13px 16px;
+}
+
+.btn-up {
+    width:63%;
+}
+
+/*================二级页======================*/
+
+.second-content {
+    box-sizing:content-box;
+    display:block;
+}
+
+
+/*===========二级页2-1商家基本信息==================*/
+
+.first-cont {
+    clear:both;
+    display:block;
+}
+
+.second-content > h3{
+    height:46px;
+    font-size:16px;
+    color:#737373;
+    font-weight:bold;
+    line-height:46px;
+    margin:0px 0px 0px 63px;
+}
+
+.second-title {
+    width:90%;
+}
+
+.second-title ul {
+    margin:0px 0px 0px 63px;
+}
+
+.second-title ul li {
+    float:left;
+    margin-right:5px;
+}
+
+.nav-tabs li a {
+    background-color:#DCDCDC;
+    color:#939393;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: #fff;
+    cursor: default;
+    background-color:#1D7DCF;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.nav-tabs >li >a:hover {
+    background-color:#1D7DCF;
+    color: #fff;
+}
+
+.form-group label {
+    /*width:70px;*/
+    text-align:right;
+    font-size:12px;
+}
+
+.form-group label > b {
+    color:#F00;
+}
+
+.tel,.tel2 {
+    width:20%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.tel2 {
+    width:69.5%;
+}
+
+.site-pic {
+    display:inline-block;
+    height:324px;
+    background-color:#FFF;
+}
+
+
+.site-pic ul li > b {
+    cursor:pointer;
+    display:inline-block;
+    width: 108px;
+    height: 86px;
+}
+
+.site-pic ul {
+    margin-left:14px;
+    margin-top:23px;
+}
+
+.site-pic ul li {
+    float:left;
+    margin-left:5px;
+    margin-top:10px;
+}
+
+.site-pic ul li a {
+    display:inline-block;;
+    width:108px;
+    height:86px;
+    position: relative;;
+}
+
+.site-pic ul li a b {
+    position: absolute;
+    top: 0px;
+    right:0px;
+    display:inline-block;
+    width:18px;
+    height:16px;
+    background:url(../img/chart-close.png) no-repeat top right;
+    display:none;
+}
+
+.site-pic ul li a:hover b {
+    display:block;
+}
+
+
+.site-pic ul li img {
+    min-width:108px;
+    min-height:86px;
+}
+
+.pic-text {
+    overflow: hidden;
+}
+
+.pic-text > p {
+    clear:both;
+    font-size:12px;
+    margin-left:115px;
+    margin-top:10px;
+}
+
+.intro {
+    position:relative;
+}
+
+.intro > label {
+    position:absolute;
+    top:0px;
+}
+
+.intro > textarea {
+    margin-left:75px;
+
+}
+
+.mt {
+    margin-left:126px;
+    padding:11px 31px;
+}
+
+.pd {
+    padding: 11px 19px;
+}
+
+/*============二级页2-2 场地服务信息===========================*/
+.second-cont {
+    display:none;
+}
+
+
+.Venues-service {
+    display:inline-block;
+    height:137px;
+    background-color:#FFF;
+    /*width:90%;*/
+    border-radius:5px;
+    border:1px solid #ccc;
+    *display:inline-block;
+
+}
+
+.Venues-service ul {
+    margin:20px 0 0 13px;
+}
+
+.Venues-service ul li {
+    float:left;
+    width:108px;
+    height:41px;
+    border-radius:3px;
+    margin-right:4px;
+    margin-bottom:9px;
+}
+
+.Venues-service ul li > a {
+    color:#949494;
+    display:inline-block;
+    width:108px;
+    height:41px;
+    text-align:center;
+    line-height:41px;
+    background-color:#F1F1F1;
+    border-radius:3px;
+    text-decoration:none;
+}
+
+
+.Venues-service ul li > a.cklight {
+    border:1px solid #3598DB;
+    background:url(../img/Right.png) right bottom no-repeat;
+    background-color:#F1F1F1;
+    color:#3598DB;
+}
+
+.Venues-service ul li > a > img {
+    cursor:pointer;
+}
+
+.btn-input {
+    background-color:#fff;
+    padding:6px 25px;
+
+}
+
+.btn-input:hover {
+    background-color:transparent;
+}
+
+.btn-submit {
+    border-radius:3px;
+}
+
+.second-cont .btn-group .dropdown-menu {
+    min-width:120px;
+}
+
+.form-group span {
+    margin-left:5px;
+}
+
+.second-cont .btn-group {
+    margin-left:10px;
+    *display:inline;
+}
+
+.second-cont .btn-group .dropdown-menu > li > a:hover{
+    color: #fff;
+    text-decoration: none;
+    background-color: #4793CA;
+}
+
+.record {
+    margin-top:16px;
+    *height:39px;
+    *margin-left:20px;
+}
+
+.wd {
+    width:81px;
+    display:inline-block;
+    background-color:#F1F1F1;
+}
+
+
+.wt {
+    width:118px;
+    display:inline-block;
+    margin-left:10px;
+    background-color:#F1F1F1;
+}
+
+.btn-pd {
+    padding:6px 25px;
+}
+
+.btn-delete {
+    padding:6px 8px;
+    background-color:#B1B1B1;
+    color:#FFF;
+}
+
+/*=================二级页2-3商家资质信息======================*/
+
+.third-cont {
+    display:none;
+    margin-top:28px;
+}
+
+.third-cont .col-sm-5 {
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.upload-pic {
+    width:70%;
+    overflow:hidden;
+    margin:0px 0px 0px 63px;
+
+}
+
+.list-pic {
+    margin-bottom:9px;
+    margin-right:10px;
+    float:left;
+    /*max-width:348px;
+    width:30%;
+    max-height:331px;
+    height:331px;*/
+    width:348px;
+    height:331px;
+    background-color:#FFF;
+    box-sizing:content-box;
+}
+
+.list-pic > h3 {
+    font-family:"Microsoft YaHei";
+    font-size:14px;
+    color:#0B70C4;
+    font-weight:bold;
+    padding-left:14px;
+    margin-top:8px;
+    padding-bottom:7px;
+    border-bottom:1px solid #ccc;
+
+}
+
+.list-pic > h3 > b {
+    color:#F00;
+}
+
+.list-pic p {
+    position:relative;
+    width:320px;
+    height:255px;
+    top:13px;
+    left:14px;
+    margin:0px;
+    cursor:pointer;
+}
+
+.btn-fun {
+    clear:both;
+    border-top:1px solid #ccc;
+    width:100%;
+    margin-top:33px;
+    padding-top:23px;
+}
+
+/*=====================二级页2-4签约结算信息========================*/
+
+.fourth-cont {
+    clear:both;
+    display:none;
+
+}
+
+.fourth-cont > .form-horizontal .form-group {
+    margin: 13px 0px 13px 32px;
+}
+
+.fourth-cont > form .form-group .btn-group {
+    width:60%;
+    *display:inline;
+    *margin-left:0px;
+    *position:relative;
+    *left:-55px;
+}
+
+.fourth-cont > form .form-group .btn-group input {
+    *display:inline;
+    *float:left;
+}
+
+.fourth-cont > form .form-group .btn-group > .btn{
+    position: relative;
+    float:none;
+    border-radius: 3px;
+    padding: 1px 7px;
+    left: -40px;
+    top:-1px;
+    *top:6px;
+}
+
+.fourth-cont > form .form-group .btn-group > .dropdown-menu {
+    min-width:445px;
+}
+
+.dropdown-min {
+    min-width:460px;
+}
+
+
+.btn-mt {
+    margin-left:103px;
+    margin-top:12px;
+    width:75%;
+}
+
+.fourth-cont span {
+    position:relative;
+    left:0;
+}
+
+.fourth-cont span > button {
+    margin-left:-2px;
+}
+
+.fourth-cont .form-group label {
+    *display:inline;
+}
+
+.form-group > div {
+    *display:inline;
+}
+
+.fourth-cont .form-group .col-sm-8 {
+    *width:60%;
+    *padding-left:0px;
+}
+
+.fourth-cont .form-group input {
+    *width:60%;
+    *margin-left:30px;
+}
+
+.form-group input {
+    *height:25px;
+
+}
+
+.col-sm-8 {
+    padding-left:0;
+}
+
+.form-group .col-sm-1,
+.form-group .col-sm-2 {
+    padding-left:0;
+    padding-right:0;
+}
+
+
+/*================三级页 时间===========================*/
+
+.third-content {
+    display:none;
+}
+
+.time-content {
+    margin-left:63px;
+    margin-top:28px;
+    /* width:50%;*/
+    background-color:#fff;
+    padding-bottom:20px;
+}
+
+.third-content > h3{
+    height:46px;
+    font-size:16px;
+    color:#737373;
+    font-weight:bold;
+    line-height:46px;
+    margin:0px 0px 0px 63px;
+}
+
+.time-title {
+    width:90%;
+    margin-left:63px;
+
+}
+
+.time-title ul li a > span {
+    display:block;
+    text-align: center;
+}
+
+.time-title > .nav > li > a {
+    padding:5px 12px;
+    margin-right:5px;
+}
+
+.time-content .time-cont {
+    width:80%;
+    padding-top:10px;
+}
+
+.time-content .table {
+    margin-top:23px;
+    border-right:1px solid #EAEAEA;
+    border-left:none;
+    margin-left:20px;
+}
+
+
+.time-content  .table > thead > tr > td {
+    text-align:center;
+    background-color:#EAEAEA;
+    padding:6px 8px;
+}
+
+.time-content  .table > thead > tr > td:first-child {
+    border-top:none;
+    background-color:#fff;
+    width:0px;
+    border-right:1px solid #EAEAEA;
+}
+
+/*.time-content > .table-responsive > .table > tbody > tr > td{
+    padding:18px 2px;
+    margin: 0 auto;
+}*/
+
+.time-content  .table > tbody > tr > td > b {
+    color:#939393;
+    /*padding: 14px 55px;*/
+    border-radius:4px;
+    background-color:#F1F1F1;
+    text-align: center;
+    margin: 0 auto;
+    font-weight:normal;
+    text-align: center;
+}
+
+.time-content  .table > tbody tr td:first-child{
+    width:40px;
+    padding:0px;
+    border-right:1px solid #EAEAEA;
+    border-top:none;
+    position:relative;
+    top:-8px;
+}
+
+.time-content  .table > tbody tr:last-child {
+    padding-bottom:15px;
+}
+
+.time-content  .table > tbody tr:last-child td:nth-child(2),
+.time-content  .table > tbody tr:last-child td:nth-child(3),
+.time-content  .table > tbody tr:last-child td:nth-child(4){
+    background-color:#F9F9F9;
+    border-radius-bottomleft: 4px;
+    -webkit-border-radius-bottomleft: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -o-border-radius-bottomleft: 4px;
+    border-bottom:1px solid #EAEAEA;
+}
+
+.time-content  .table > tbody tr:last-child td{
+    padding: 7px 2px;
+
+}
+
+.time-content .time-cont p {
+    width:92.2%;
+    border:1px solid #EAEAEA;
+    margin-left:60px;
+    margin-top:-21px;
+    border-top:none;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.time-content > .form-group {
+    margin: 13px 0px 13px 30px;
+}
+
+.time-content .time-cont p > b {
+    color:#f00;
+}
+
+.time-color ul {
+    margin:0 auto;
+    margin-left:39px;
+    height:23px;
+}
+
+.time-color ul li {
+    float:left;
+    margin-left:22px;
+    height:23px;
+    line-height:23px;
+}
+
+.time-color ul li > span {
+    display:inline-block;
+    height: 23px;
+    float: left;
+}
+
+.time-color ul li > b {
+    display:inline-block;
+    width: 62px;
+    height:23px;
+    margin-right:5px;
+    vertical-align:middle;
+    float:left;
+
+}
+
+.time-color ul li:first-child > b {
+    background-color:#29AFAA;
+}
+
+.time-color ul li:nth-child(2) > b {
+    background-color:#33B0EC;
+}
+
+.time-color ul li:nth-child(3) > b {
+    background-color:#F1F1F1;
+}
+
+.third-content form {
+    margin-left:60px;
+    clear: both;
+}
+
+.third-content .col-sm-4 {
+    padding-left:0px;
+}
+
+/*================改变表格里面的时间颜色的值=====================*/
+.time-content  .table > tbody > tr:first-child  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(3)  td:nth-child(3) b,
+.time-content  .table > tbody > tr:nth-child(3)  td:nth-child(4) b,
+.time-content  .table > tbody > tr:nth-child(4)  td:nth-child(4) b,
+.time-content  .table > tbody > tr:nth-child(6)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(7)  td:nth-child(3) b,
+.time-content  .table > tbody > tr:nth-child(7)  td:nth-child(4) b,
+.time-content  .table > tbody > tr:nth-child(9)  td:nth-child(4) b,
+.time-content  .table > tbody > tr:nth-child(11)  td:nth-child(3) b{
+    color:#fff;
+    background-color:#29AFAA;
+}
+
+.time-content  .table > tbody > tr:nth-child(2)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(2)  td:nth-child(3) b,
+.time-content  .table > tbody > tr:nth-child(4)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(4)  td:nth-child(3) b,
+.time-content  .table > tbody > tr:nth-child(2)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(5)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(2)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(6)  td:nth-child(3) b,
+.time-content  .table > tbody > tr:nth-child(6)  td:nth-child(4) b,
+.time-content  .table > tbody > tr:nth-child(7)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(2)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(8)  td:nth-child(3) b,
+.time-content  .table > tbody > tr:nth-child(2)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(9)  td:nth-child(2) b,
+.time-content  .table > tbody > tr:nth-child(10)  td:nth-child(4) b,
+.time-content  .table > tbody > tr:nth-child(11)  td:nth-child(2) b
+{
+    color:#fff;
+    background-color:#33B0EC;
+}
+
+@media (max-width:768px) {
+
+    .third-content {
+
+    }
+
+    .time-content  .table > tbody > tr > td{
+        padding:18px 2px;
+        margin: 0 auto;
+    }
+    .time-content  .table > tbody > tr > td > b {
+        padding: 14px 70px;
+    }
+
+
+    .time-content .time-cont {
+        /*width:631px;*/
+        padding-top:10px;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width:992px) {
+
+    .time-content  .table > tbody > tr > td{
+        padding:18px 2px;
+        margin: 0 auto;
+    }
+
+    .time-content  .table > tbody > tr > td > b {
+        padding: 14px 90px;
+    }
+
+    .time-content .time-cont {
+        /*width:750px;*/
+        padding-top:10px;
+    }
+}
+
+@media (min-width: 992px) and (max-width:1600px){
+
+    .time-content  .table > tbody > tr > td{
+        padding:18px 2px;
+        margin: 0 auto;
+    }
+
+    .time-content  .table > tbody > tr > td > b {
+        padding: 14px 100px;
+    }
+
+    .time-content .time-cont {
+        /*width:1100px;*/
+        padding-top:10px;
+    }
+
+}
+
+/*==============第四个页面===================================*/
+
+
+.fourth-content {
+
+}
+.fourth-content > h3,
+.order-content > h3{
+    height:46px;
+    font-size:16px;
+    color:#737373;
+    font-weight:bold;
+    line-height:46px;
+    margin:0px 0px 0px 63px;
+    padding: 0px;
+}
+
+/*===========第四个页面场地价格头部=======================*/
+
+
+.tab-title {
+    width: 91.5%;
+    margin: 0 auto;
+    height: 34px;
+}
+.tab-title p {
+    float:left;
+}
+
+
+.tab-title .tab-form {
+    float:right;
+    margin: 0px;
+}
+.tab-title .tab-form .col-sm-3,
+.tab-title .tab-form .col-sm-5{
+    padding-right:0px;
+    padding-left:0px;
+}
+
+.tab-title .tab-form .btn-group {
+    height:31px;
+}
+
+.fourth-content .tab-title .form-group {
+    margin:0px;
+    float: left;
+    padding: 0px;
+}
+
+.fourth-content .tab-title .form-group label {
+    padding-top:7px;
+}
+
+.fourth-content .tab-title .form-group .form-control {
+    width: 100%;
+    padding: 6px;
+}
+
+.fourth-content  .form-group .btn-group > .btn {
+    position: relative;
+    float: none;
+    border-radius: 3px;
+    padding: 1px 7px;
+    left: 66px;
+    top: -29px;
+}
+
+/*===============表格内容===================*/
+
+.fourth-content .tab-content {
+    width: 91.5%;
+    margin: 0 auto;
+}
+
+.fourth-content .tab-content .table {
+    background-color:#fff;
+}
+
+.fourth-content .tab-content .table thead {
+    background-color:#EAEAEA;
+}
+
+.fourth-content .tab-content .table thead tr td {
+    color:#7B7B7B;
+}
+
+.fourth-content .tab-content .table tbody tr td {
+    font-size:12px;
+    /*padding: 0px 6px;*/
+    padding: 0px;
+    height: 42px;
+    border: none;
+}
+
+.fourth-content .tab-content .table tbody tr td > i {
+    display:block;
+}
+
+.fourth-content .tab-content .table tr td {
+    text-align:center;
+    vertical-align: middle;
+}
+
+.fourth-content .tab-content .table tr td > b {
+    text-align:left;
+    color:#7B7B7B;
+}
+
+.fourth-content .tab-content .table tr td > em {
+    font-weight:bold;
+    color: #FF0000;
+    font-style: normal;
+}
+
+.fourth-content .tab-content .table tr td span {
+    color:#4191D2;
+    margin-left:5px;
+}
+
+.fourth-content .tab-content .table tr td > s {
+    text-decoration: none;
+    color: #FF614B;
+}
+
+
+.fourth-content .tab-content .table thead tr td:nth-child(5){
+    width: 90px;
+}
+
+
+/*.fourth-content .tab-content .table tbody tr td:nth-child(6){*/
+/*padding-right:20px;*/
+/*}*/
+
+.fourth-content .tab-content .table thead tr td:nth-child(7){
+
+    padding-left:20px;
+    padding-right:0px;
+}
+
+.fourth-content .tab-content .table tbody tr td:nth-child(6){
+    width:70px;
+    margin-right:20px;
+    background-color:#0f0;
+}
+
+
+.fourth-content .tab-content .table thead tr td:nth-child(8){
+    padding-left:0px;
+}
+
+
+
+.fourth-content .tab-content .table tbody tr td:nth-child(2) span {
+    color: #0069C7;
+    font-weight:600;
+    font-family:"Microsoft YaHei";
+
+}
+
+.fourth-content .tab-content .table tbody tr td:last-child span {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/*=============================订单页==================================*/
+
+.order-content {
+
+}
+
+.order-tab {
+    width:90%;
+    margin: 0 auto;
+}
+
+.order-content .order-tab table {
+    background-color:#fff;
+
+}
+
+.order-content .order-tab table thead {
+    background-color:#EAEAEA;
+    padding:12px 8px;
+}
+
+.order-content .order-tab table tr td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.order-content .order-tab table thead tr td {
+    height:48px;
+}
+
+.order-content .order-tab table tbody tr {
+    border: 1px dotted #EAEAEA;
+}
+
+
+.order-content .order-tab table tbody tr td {
+    font-size:12px;
+    border:none;
+    height:42px;
+    line-height:42px;
+
+}
+
+.order-content .order-tab table tbody tr td > p {
+    height:42px;
+    vertical-align: middle;
+}
+
+.order-content .order-tab table tbody tr td > span {
+    color: #4191D2;
+}
+
+.order-content .order-tab table tbody tr td:last-child {
+    cursor:pointer;
+}
+
+.order-content .order-tab table tbody tr td > b {
+    color: #FF2300;
+}
+
+.order-content .order-tab table tbody tr:nth-child(odd){
+    background-color:#F9F9F9;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+    background-color: #EAEAEA;
+}
+
+
+#text-top {
+    vertical-align: top;
+}
+
+
+
+

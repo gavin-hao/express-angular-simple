@@ -1,0 +1,151 @@
+<div class=" container">
+    <h3>创建新产品</h3>
+
+    <form role="form" ng-submit="createProdSubmit()" name="newProdForm">
+        <div class="form-group col-md-8">
+            <label for="category" class="control-label">设置产品的类型</label>
+
+
+            <button type="button" class="btn-default form-control change-btn" id="category" name="category"
+                    ng-model="newProd.category" required=""
+                    ng-options="m.id as m.productName for m in ptmodel" ng-required
+                    data-placeholder="选择产品类型" bs-select><span class="caret"></span></button>
+            <input type="hidden" ng-model="newProd.category" name="category">
+
+        </div>
+
+        <div class="form-group col-md-8" >
+            <label for="indoor" class="control-label">选择产品对应场地的属性</label>
+
+            <div>
+
+                <div class="btn-group btn-group-justified" >
+                    <div class="btn-group" ng-class="{'has-error': newProdForm.$dirty&&newProdForm.indoor.$invalid}">
+                        <button type="button" class="btn-default form-control change-btn" id="indoor" name="indoor"
+                                ng-model="newProd.indoor" required=""
+                                ng-options="m.id as m.productName for m in indoormodel"
+                                data-placeholder="选择产品类型" bs-select><span class="caret"></span></button>
+                        <input type="hidden" ng-model="newProd.indoor" name="indoor" required="">
+                    </div>
+                    <div class="btn-group" ng-class="{'has-error': newProdForm.$dirty&&newProdForm.floor.$invalid}">
+                        <button type="button" class="btn-default form-control change-btn" id="floor" name="floor"
+                                ng-model="newProd.floor" required=""
+                                ng-options="m.id as m.productName for m in floormodel"
+                                data-placeholder="选择产品类型" bs-select><span class="caret"></span></button>
+                        <input type="hidden" ng-model="newProd.floor" name="floor" required="">
+                    </div>
+                    <div class="btn-group" ng-class="{'has-error': newProdForm.$dirty&&newProdForm.standerd.$invalid}">
+                        <button type="button" class="btn-default form-control change-btn" id="standerd" name="standerd"
+                                ng-model="newProd.standerd" required=""
+                                ng-options="m.id as m.productName for m in standerdmodel"
+                                data-placeholder="选择产品类型" bs-select><span class="caret"></span></button>
+                        <input type="hidden" ng-model="newProd.standerd" name="standerd" required="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group col-md-8 col-xs-12">
+            <label for="stock" class="control-label">选择该产品对应的场地（可多选）</label>
+
+            <div id="stock">
+
+                <div class="Venues-service form-control">
+                    <ul>
+                        <!--<li ng-repeat="v in avilableVenues"><a href="#" class="active">{{v.name}}</a></li>-->
+                        <li class="active" ng-repeat="o in avilableVenues" ng-click="operateVenue(o)">
+                            <a class="active" id="v-{{o.id}}" vid="{{o.id}}" tag="venue">{{o.name}}号场</a>
+                        </li>
+                        <!--<li><a href="#">2号场</a></li>
+                        <li><a href="#" class="active">3号场</a></li>
+                        <li><a href="#" class="active">4号场</a></li>
+                        <li><a href="#" class="active">3号场</a></li>
+                        <li><a href="#" class="active">4号场</a></li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-8" ng-class="{'has-error': newProdForm.$dirty&&newProdForm.name.$invalid}">
+            <label for="name" class="control-label">产品名称</label>
+
+            <div class="">
+                <input type="text" id="name" name="name" ng-model="newProd.name" class="form-control" required=""/>
+            </div>
+
+
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="fromDate" class="control-label">设置产品有效期</label>
+
+            <div class="">
+                <div class="input-group"
+                     ng-class="{'has-error': newProdForm.$dirty&&newProdForm.fromDate.$invalid&&newProdForm.untilDate.$invalid}">
+                    <input type="text" class="form-control" ng-model="newProd.fromDate" name="fromDate"
+                           id="fromDate" required
+                           data-max-date="{{newProd.untilDate}}" placeholder="2014/11/06" bs-datepicker="">
+
+                    <span class="input-group-addon">--</span>
+                    <input type="text" class="form-control" ng-model="newProd.untilDate" name="untilDate"
+                           id="untilDate" required
+                           data-min-date="{{newProd.fromDate}}" placeholder="2014/12/06" bs-datepicker="">
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-12"></div>
+        <div class="form-group col-sm-6">
+            <label for="price" class="control-label">设置产品的单价</label>
+
+            <div class="">
+                <div class="input-group" ng-class="{'has-error': newProdForm.$dirty&&newProdForm.price.$invalid}">
+                    <input type="number" ng-model="newProd.price" class="form-control" id="price" name="price" required="">
+                    <span class="input-group-addon">元/小时</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12"></div>
+        <div class="form-group col-sm-6">
+            <label for="shours" class="control-label">设置以上价格应用的时间段</label>
+
+            <!--<div class="">
+                <div class="input-group">
+                    <input type="time" id="fromTime" ng-model="newProd.fromTime" class="form-control"/>
+                    <span class="input-group-addon">--</span>
+                    <input type="time" id="untilTime" ng-model="newProd.untilTime" class="form-control"/>
+                </div>
+                <span class="help-block">如:08:00-－22:00 表示该产品所有场地在8点到22点之间按照上面指定的价格预订。
+                    可以对不同的时间段设置不同的价格,如若对其他时间段设置不同的价格，可在保存后在产品列表中找到该产品添加其他时段的价格</span>
+            </div>-->
+            <div class="">
+                <div class="input-group" ng-class="{'has-error': newProdForm.$dirty&&newProdForm.shours.$invalid&&newProdForm.ehours.$invalid}">
+                    <input type="text" class="form-control" size="5" ng-model="newProd.fromTime"
+                           data-time-format="HH:mm" data-time-type="date" data-min-time="00:00"
+                           data-length="1" data-minute-step="60" data-arrow-behavior="pager"
+                           data-max-time="{{newProd.untilTime}}" data-autoclose="1" id="shours" name="shours" required=""
+                           bs-timepicker>
+                    <span class="input-group-addon">--</span>
+                    <input type="text" class="form-control" size="5" ng-model="newProd.untilTime" required
+                           data-time-format="HH:mm" data-time-type="date" data-min-time="{{newProd.fromTime}}"
+                           data-length="1" data-minute-step="60" data-arrow-behavior="pager"
+                           data-max-time="23:00" data-autoclose="1" id="ehours" name="ehours"
+                           bs-timepicker>
+                </div>
+                <span class="help-block">如:08:00-－22:00 表示该产品所有场地在8点到22点之间按照上面指定的价格预订。
+                    可以对不同的时间段设置不同的价格,如若对其他时间段设置不同的价格，可在保存后在产品列表中找到该产品添加其他时段的价格</span>
+            </div>
+        </div>
+
+
+        <div class="btn-fun">
+            <button type="submit" ng-disabled="newProdForm.$invalid||submitting" class="btn btn-primary mt">
+                保存{{submitting?'...':''}}
+            </button>
+            <button type="button" class="btn pd" ng-click="addProdCancel()">取消</button>
+        </div>
+    </form>
+    <div class="" id="alerts-container">
+
+    </div>
+</div>

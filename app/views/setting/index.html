@@ -1,0 +1,35 @@
+<nav-top></nav-top>
+<div class="layout-body">
+    <div class="layout-main-container">
+        <nav-left></nav-left>
+<div class="top-tab-panel border-bottom-line">
+    <div class="top-tab-panel-body">
+        <ul class="nav nav-tabs top-nav-tab">
+            <li role="presentation" class="active"><a href="/setting">场馆基本信息</a></li>
+            <li role="presentation"><a href="/setting/security">安全设置</a></li>
+            <li role="presentation"><a href="/setting/account">账户设置</a></li>
+            <li role="presentation"><a href="/setting/message/0">消息中心</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container-fluid" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <div class="container-body body-bg-white">
+        <section class="mt30"><h3 class="">{{gymName}}</h3></section>
+        <section>
+            <ul class="nav nav-pills nav-justified nav-page">
+                <li  ng-class="{'active':template.value==0}"><a href="#" ng-click="setShowMode(templates[0].value)"><span class="txt">{{templates[0].name}}</span><span class="arrow"></span></a></li>
+                <li ng-class="{'active':template.value==1}"><a href="#" ng-click="setShowMode(templates[1].value)"><span class="txt">{{templates[1].name}}</span><span class="arrow"></span></a></li>
+                <li ng-class="{'active':template.value==2}"><a href="#" ng-click="setShowMode(templates[2].value)"><span class="txt">{{templates[2].name}}</span><span class="arrow"></span></a></li>
+            </ul>
+        </section>
+        <div class="gym-info" ng-include="template.url">
+
+        </div>
+       <!-- <div class="gym-info" ng-include="views/setting/img.html">
+        </div>-->
+    </div>
+</div>
+        </div></div>
+
+

@@ -1,0 +1,165 @@
+<section>
+    <h4 class="">运营时间</h4>
+
+    <p class="light-grey-color">
+        <small>系统会根据您设置的运营时间生成可预订的时段</small>
+    </p>
+
+    <div class="gym-running-time">
+        <div class="inline-div pr15">时间设置:</div>
+        <!--<select class="form-control input-sm select-control-time">
+            <option>9:00</option>
+            <option>10:00</option>
+            <option>11:00</option>
+            <option>12:00</option>
+        </select>
+        --
+        <select class="form-control input-sm select-control-time">
+            <option>9:00</option>
+            <option>10:00</option>
+            <option>11:00</option>
+            <option>12:00</option>
+        </select>-->
+
+        <div class="select-box" ng-click="showStart()" ng-class="{'active':isactive}">
+                    <span class="select-box-content">
+                        <span>{{viewModel.start_time.substr(0,5)}}</span>
+                        <input type="hidden" ng-model="viewModel.start_time"/>
+                    <span class="iconfont icon-movedown"></span>
+                    </span>
+            <ul class="select-box-items">
+                <li class="" ng-class="{'active':viewModel.start_time=='05:00:00'}" ng-click="selectTime('05:00:00')"><span>05:00</span></li>
+                <li class="" ng-class="{'active':viewModel.start_time=='06:00:00'}" ng-click="selectTime('06:00:00')"><span>06:00</span></li>
+                <li class="" ng-class="{'active':viewModel.start_time=='07:00:00'}" ng-click="selectTime('07:00:00')"><span>07:00</span></li>
+                <li class="" ng-class="{'active':viewModel.start_time=='08:00:00'}" ng-click="selectTime('08:00:00')"><span>08:00</span></li>
+                <li class="" ng-class="{'active':viewModel.start_time=='09:00:00'}" ng-click="selectTime('09:00:00')"><span>09:00</span></li>
+                <li class="" ng-class="{'active':viewModel.start_time=='10:00:00'}" ng-click="selectTime('10:00:00')"><span>10:00</span></li>
+            </ul>
+        </div>
+        <div class="inline-div pr15 pl15">--</div>
+        <div class="select-box"  ng-click="showEnd()"  ng-class="{'active':isactive1}">
+                    <span class="select-box-content"><span>{{viewModel.end_time.substr(0,5)}}</span>
+                        <input type="hidden" ng-model="viewModel.end_time"/>
+                    <span class="iconfont icon-movedown"></span>
+                    </span>
+            <ul class="select-box-items">
+                <li class="" ng-class="{'active':viewModel.end_time=='16:00:00'}" ng-click="selectTime1('16:00:00')"><span>16:00</span></li>
+                <li class="" ng-class="{'active':viewModel.end_time=='17:00:00'}" ng-click="selectTime1('17:00:00')"><span>17:00</span></li>
+                <li class="" ng-class="{'active':viewModel.end_time=='18:00:00'}" ng-click="selectTime1('18:00:00')"><span>18:00</span></li>
+                <li class="" ng-class="{'active':viewModel.end_time=='19:00:00'}" ng-click="selectTime1('19:00:00')"><span>19:00</span></li>
+                <li class="" ng-class="{'active':viewModel.end_time=='20:00:00'}" ng-click="selectTime1('20:00:00')"><span>20:00</span></li>
+                <li class="" ng-class="{'active':viewModel.end_time=='21:00:00'}" ng-click="selectTime1('21:00:00')"><span>21:00</span></li>
+                <li class="" ng-class="{'active':viewModel.end_time=='22:00:00'}" ng-click="selectTime1('22:00:00')"><span>22:00</span></li>
+                <li class="" ng-class="{'active':viewModel.end_time=='23:00:00'}" ng-click="selectTime1('23:00:00')"><span>23:00</span></li>
+            </ul>
+        </div>
+    </div>
+    <div class="" id="alerts-time"></div>
+    <a class="btn btn-info btn-sm" ng-click="saveTime()">保存</a>
+</section>
+<section>
+    <h4 class="">服务电话</h4>
+    <p><span>010-</span><input class="form-control input-sm" ng-model="viewModel.tel" ng-value="{{viewModel.tel}}"></p>
+    <div class="" id="alerts-container"></div>
+    <a class="btn btn-info btn-sm" ng-click="modifyTel()">保存</a>
+
+</section>
+
+<section>
+    <h4 class="">地址</h4>
+
+    <p>
+    <address>
+        <strong>北京</strong><br>
+    {{viewModel.address}} <a href="#" ng-click="edit_addr=1"><span class="fa fa-edit"></span>修改地址</a>
+    </address>
+    <div class="edit-addr pointer" ng-class="{'show':edit_addr==1}">
+        <div class="form-group col-sm-6 bg-grey">
+            <div class="input-group input-group-sm">
+                <input class="form-control input-sm" placeholder="输入场馆位置,查找地址" ng-model="viewModel.newAddress">
+                 <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="searchAddress()"><i class="fa fa-search pl15 pr15"></i></button>
+                    <input type="hidden" ng-model="latitude"/>
+                    <input type="hidden" ng-model="longitude"/>
+                 </span>
+            </div>
+            <div class="map-search-result"  ng-show="ischoose">
+                <div class="result-title"><b>选择地址</b></div>
+                <ul class="suggest-list" ng-show="issuggest">
+                    <li ng-repeat="point in viewModel.addressResult" ng-click="choose($index)">
+                        <div class="title-icon"><span class="fa fa-map-marker"></span></div>
+                        <div class="poi-info">
+                            <p class="title">{{point.name}}</p>
+
+                            <p class="desc">{{point.address}}</p>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <a class="btn btn-sm btn-default mt15 pull-right ml15" ng-click="edit_addr=0">取消</a><a
+                class="btn btn-sm btn-info mt15 pull-right" ng-click="modifyAddress();edit_addr=0">保存</a>
+
+        </div>
+    </div>
+    </p>
+</section>
+<section>
+    <h4 class="">联系人信息</h4>
+
+    <p>
+        <b>联系人姓名</b><input class="form-control input-sm" ng-model="viewModel.contact_name" value="{{viewModel.contact_name}}">
+    </p>
+
+    <p>
+        <b>联系人电话</b><input type="tel" class="form-control input-sm" ng-model="viewModel.contact_tel" value="{{viewModel.contact_tel}}">
+    </p>
+    <div class="" id="alerts-contact"></div>
+    <a class="btn btn-info btn-sm" ng-click="modifyContact()">保存</a>
+</section>
+<section>
+    <h4 class="">场馆介绍</h4>
+
+    <div class="col-sm-8 gym-desc">
+        <p>
+            {{viewModel.description}}
+            <a href="#" ng-click="edit_desc=1"><span class="fa fa-edit"></span>修改</a>
+        </p>
+
+        <div class="form-group bg-grey gym-desc-edit" ng-class="{'show':edit_desc==1}">
+            <textarea class="form-control" ng-model="viewModel.newDescription">
+                {{viewModel.newDescription}}
+            </textarea>
+            <a class="btn btn-sm btn-default mt15 pull-right ml15" ng-click="edit_desc=0">取消</a><a
+                class="btn btn-sm btn-info mt15 pull-right" ng-click="modifyDesc();edit_desc=0">保存</a>
+        </div>
+    </div>
+</section>
+<section>
+    <h4 class="">场馆服务</h4>
+
+    <div>
+<!--        <label class="checkbox-inline ">
+            <input type="checkbox" class="" value="option1"> 储物柜
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" value="option2"> 淋浴间
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" value="option3"> 停车场
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" value="option1"> 器材租借
+        </label>
+        <label class="checkbox-inline">
+            <input type="checkbox" value="option2"> 商品售卖
+        </label>-->
+
+        <label class="checkbox-inline" ng-repeat="s in viewModel.groupService">
+
+                <input type="checkbox" name="services" ng-model="s.ischeck" value="{{s.id}}" ng-change="modifyService()"/> {{s.name_cn}}
+        </label>
+
+    </div>
+</section>

@@ -1,0 +1,42 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller="addtimeCtrl">
+    <div class="modal-dialog order-popup-wd">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"  ng-click="$hide()"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">{{title}}</b></h4>
+            </div>
+            <div class="modal-body">
+                <div class="add-time">
+                    <!--<h3>添加时段</h3>-->
+                    <form role="form" ng-submit="submitForm()" name="form1">
+                    <div class="edit-time">
+                        <b>起止时间：<input type="text" class="form-control" size="5" ng-model="shours"
+                                       data-time-format="HH:mm" data-time-type="date" data-min-time="00:00"
+                                       data-length="1" data-minute-step="60" data-arrow-behavior="pager"
+                                       data-max-time="23:00" data-autoclose="1" id="shours" name="shours" required=""
+                                       bs-timepicker> -
+                            <input type="text" class="form-control" size="5" ng-model="ehours" required
+                                   data-time-format="HH:mm" data-time-type="date" data-min-time="{{shours}}"
+                                   data-length="1" data-minute-step="60" data-arrow-behavior="pager"
+                                   data-max-time="23:00" data-autoclose="1" id="ehours" name="ehours"
+                                   bs-timepicker></b>
+                        <span>修改价格：<input type="number" class="form-control" ng-model="price" required=""> 元/小时</span>
+                    </div>
+                        <input type="hidden" ng-model="product_id"/>
+                        <input type="hidden" ng-model="price_starttime"/>
+                        <input type="hidden" ng-model="price_endtime"/>
+                        <button class="btn btn-primary">提交</button>
+                        <button class="btn btn-default active" ng-click="$hide()">取消</button>
+                    </form>
+                </div>
+                <div class="form-group">
+                    <div ng-show="isshowtip"  ng-class="alert.type" role="alert" style="margin-left: 50px;width: 610px; margin-top: 20px">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <strong>{{alert.title}}!</strong> {{alert.content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

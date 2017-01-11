@@ -1,0 +1,336 @@
+<div>
+<div ng-if="venueList.length==0">
+    <p class="list-empty">您当前还没创建场地</p>
+</div>
+<div ng-if="venueList.length>0">
+<div class="time-line-panel">
+    <div class="time-line">
+        <ul>
+            <li ng-repeat="t in venueTimeLine"><span>{{t.begin|date:'HH'}}:{{t.begin|date:'mm'}}</span><span>{{t.end|date:'HH'}}:{{t.end|date:'mm'}}</span><i
+                    class="caret"></i></li>
+        </ul>
+    </div>
+</div>
+<div class="venue-list ">
+<div class="venue-item"
+     ng-class="{'first':$index==0,'edit':venueEditModel.edit==venue.product_id,'active':venueEditModel.edit==venue.product_id,
+     'disabled':venueEditModel.edit>0&&venueEditModel.edit!=venue.product_id}"
+     ng-repeat="venue in venueList track by $index">
+<ul class="venue-price">
+    <li class="title">
+        <div class="title-content">
+            <b class="" ng-class="{'venue-offline':venue.available==0}">{{venue.name}}</b><span
+                class="title-arrow pull-right"><span
+                class="iconfont icon-moveright"></span></span>
+        </div>
+    </li>
+    <li ng-repeat="detail in venue.details">
+        <p class="time">{{detail.start_time}}-{{detail.end_time}}:00</p>
+        <span ng-if="detail.price==0||detail.price" class="price adjust-price" bs-tooltip=""
+              data-title="此处为调价后的价格,原价为{{detail.basic_price}}元">{{detail.price}}元</span>
+        <span ng-if="!(detail.price==0||detail.price)" class="price">{{detail.basic_price==0?'--':detail.basic_price}}元</span>
+    </li>
+
+</ul>
+<div class="venue-item-detail">
+    <div class="property">
+        <b>{{venue.indoor|indoorFilter:venue.indoor}}</b>
+        <b>{{venue.floor_type|floorFilter:venue.floor_type}}</b>
+        <b>{{venue.standerd|standerdFilter:venue.standerd}}</b>
+        <b>{{venue.create_time|date:'short'}}</b>
+    </div>
+    <div class="menu ">
+        <a href="#" bs-tooltip="" data-title="删除该场地" ng-if="venue.available==0" ng-click="deleteVenue(venue.product_id,$index)"><span
+                class="glyphicon glyphicon-trash"></span></a>
+        <a href="#" bs-tooltip="" data-title="该场地上线后才能接受预订" ng-if="venue.available==0"
+           ng-click="setAvailable(1,venue.product_id,$index)"><span
+                class="glyphicon glyphicon-check"></span>上线</a>
+        <a href="#" bs-tooltip="" data-title="场地下线后用户将无法预订" ng-if="venue.available==1"
+           ng-click="setAvailable(0,venue.product_id,$index)"><span
+                class="glyphicon glyphicon-log-out"></span>下线</a>
+        <a href="#" class="disabled" bs-tooltip="" data-title="该场地关闭期间用户将无法预订"
+           ng-click="setStock(venue.product_id,$index)"><span class="glyphicon glyphicon-lock "></span>开/关场地</a>
+        <a href="javascript:;" bs-tooltip="" data-title="您可以对该场地特定日期的价格进行调整"
+           ng-click="updatePrice(venue.product_id,$index)" ng-if="venue.price_exist"><span
+                class="glyphicon glyphicon-file"></span>调价</a>
+        <a href="javascript:;" bs-tooltip="" data-title="设置该场地的价格" ng-click="setPrice(venue.product_id,$index)"><span
+                class="glyphicon glyphicon-file"></span>设置价格</a>
+    </div>
+
+</div>
+<div class="venue-item-edit" ng-class="{'open':venueEditModel.edit==venue.product_id}">
+<div class="time-select-box">
+    <h5>{{venueEditModel.operate_title}}</h5>
+    <ul>
+        <li class="title">
+            <div class="checkbox"><label>
+                <input type="checkbox" value="" ng-model="venueEditModel.venue_all_selected"
+                       ng-click="onCheckAllChanged()">
+                全选
+            </label></div>
+        </li>
+        <li class="" ng-class="{'active':d.selected}" ng-repeat="d in venue.details">
+            <a href="#" ng-click="select(d.detail_id,$index)">
+                <span class="">{{d.start_time}}:00</span>
+
+                <p class="">{{d.end_time}}:00</p>
+                        <span class="check-box"><span class="fa "
+                                                      ng-class="{'fa-check-circle':d.selected,'fa-check-circle-o':!d.selected}"></span></span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="price-setting-box"
+     ng-class="{'open':venueEditModel.edit==venue.product_id&&venueEditModel.operate_type==0}">
+    <form class="form-inline" role="form"
+          ng-submit="onSetPriceSubmit(venue.product_id,$index)" name="addPriceForm">
+
+        <div class="form-group" bs-tooltip="" data-title="设置价格">
+            <input type="number" min="0" max="9999" required="" class="form-control input-sm"
+                   ng-model="venueEditModel.basicPrice"
+                   placeholder="设置价格">元
+        </div>
+
+
+        <button type="submit" class="btn btn-success" ng-disabled="addPriceForm.$invalid||addpriceSubmitting">
+            保存{{addpriceSubmitting?'...':''}}
+        </button>
+        <button type="button" class="btn btn-default" ng-click="cancelEdit(venue.product_id,$index)">返回</button>
+        <span class="text-danger" ng-class="{'show':venueEditModel.hasError,'hidden':!venueEditModel.hasError}">{{venueEditModel.hasError}}</span>
+        <span class="text-success" ng-class="{'show':!venueEditModel.hasError,'hidden':venueEditModel.hasError}">{{venueEditModel.success}}</span>
+    </form>
+</div>
+<div class="price-setting-box"
+     ng-class="{'open':venueEditModel.edit==venue.product_id&&venueEditModel.operate_type==1}">
+    <form class="form-inline" role="form" name="updatePriceForm"
+          ng-submit="onUpdatePriceSubmit(venue.product_id,$index)">
+        <div class="form-group">
+            <input type="number" class="form-control input-sm" min="0" max="9999" required=""
+                   ng-model="venueEditModel.price" placeholder="新价格">元
+        </div>
+        <span class="divider-vertical"></span>
+
+        <div class="form-group">
+            <label>起止时间</label>
+            <input type="text" class="form-control input-sm" required="" name="start"
+                   ng-model="venueEditModel.startTime" placeholder="起始时间"
+                   bs-datepicker="" data-container="body" readonly>
+            <span>-</span><input type="text" class="form-control input-sm ml5" name="end"
+                                 placeholder="结束时间" ng-model="venueEditModel.endTime"
+                                 data-min-date="{{venueEditModel.startTime}}"
+                                 data-max-date="{{venueEditModel.maxDate}}"
+                                 bs-datepicker="" data-container="body" readonly>
+        </div>
+        <span class="divider-vertical"></span>
+        <button type="submit" class="btn btn-success" ng-disabled="updatePriceForm.$invalid||updatePriceSubmitting">保存
+            {{updatePriceSubmitting?'...':''}}
+        </button>
+        <button type="button" class="btn btn-default" ng-click="cancelEdit(venue.product_id,$index)">返回</button>
+        <span class="text-danger" ng-class="{'show':venueEditModel.hasError,'hidden':!venueEditModel.hasError}">{{venueEditModel.hasError}}</span>
+        <span class="text-success" ng-class="{'show':!venueEditModel.hasError,'hidden':venueEditModel.hasError}">{{venueEditModel.success}}</span>
+    </form>
+</div>
+<div class="price-setting-box"
+     ng-class="{'open':venueEditModel.edit==venue.product_id&&venueEditModel.operate_type==2}">
+    <form class="form-inline" role="form" name="updateStockForm"
+          ng-submit="onUpdateStockSubmit(venue.product_id,$index)">
+        <div class="radio">
+            <label>
+                <input type="radio" name="on_off" value="0" ng-model="venueEditModel.isLockStock"> 开启
+            </label>
+            <label>
+                <input type="radio" name="on_off" value="1" ng-model="venueEditModel.isLockStock"> 关闭
+            </label>
+        </div>
+        <span class="divider-vertical"></span>
+
+        <div class="form-group mr5" bs-tooltip="" data-title="填写关场原因">
+            <input type="text" class="form-control input-sm" ng-model="venueEditModel.lockReason" placeholder="关闭原因" maxlength="20">
+        </div>
+        <span class="divider-vertical"></span>
+
+        <div class="form-group mr5">
+            <a href="javascript:void(0);" ng-click="venueEditModel.dateSetting=true">
+                <span bs-tooltip=""
+                      data-title="设置开启/关闭时间">
+                    <span ng-if="venueEditModel.endTime>venueEditModel.startTime">
+                        <span>{{venueEditModel.startTime|date:'mediumDate'}}</span>
+                        <span>--</span>
+                        <span>{{venueEditModel.endTime|date:'mediumDate'}}</span>
+                    </span>
+                    <span ng-if="venueEditModel.endTime<=venueEditModel.startTime">{{venueEditModel.startTime|date:'mediumDate'}}
+                        <span ng-if="venueEditModel.startTime<=today">(今天)</span>
+                    </span>
+                </span>
+            </a>
+
+            <div class="popover bottom fade in stock-date"
+                 ng-class="{'open':venueEditModel.dateSetting}">
+                <div class="arrow"></div>
+                <h3 class="popover-title">开启/关闭日期
+                    <button type="button" class="close" ng-click="venueEditModel.dateSetting=false"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                </h3>
+
+                <div class="popover-content">
+                    <div>
+                        <label>起始日期</label>
+
+                        <div class="date-picker start">
+
+                            <input type="text" class="form-control input-sm"
+                                   ng-model="venueEditModel.stockLock_startTime"
+                                   data-min-date="{{venueEditModel.startTime}}"
+
+                                   bs-datepicker="" readonly/><i
+                                class="right-icon glyphicon glyphicon-calendar"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <label>结束日期</label>
+
+                        <div class="date-picker end">
+
+                            <input type="text" class="form-control input-sm" ng-model="venueEditModel.stockLock_endTime"
+                                   data-min-date="{{venueEditModel.startTime}}"
+                                   data-max-date="{{venueEditModel.maxDate}}"
+                                   bs-datepicker="" readonly/><i
+                                class="right-icon glyphicon glyphicon-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="popover-bottom">
+                    <!-- <div class="popover-bottom-content"></div>-->
+                    <input type="button" class="btn btn-default btn-sm" ng-click="venueEditModel.dateSetting=false"
+                           value="取消">
+                    <input type="button" class="btn btn-primary btn-sm" ng-click="setLockStockTime()" value="确定">
+                </div>
+            </div>
+        </div>
+        <span class="divider-vertical"></span>
+
+        <div class="form-group form-group-sm mr5" bs-tooltip="" data-title="选择一种颜色标注">
+            <a ng-click="venueEditModel.flagSetting=true" href="javascript:;">
+                <span class="fa fa-star-o" ng-class="{'light':venueEditModel.isSetColor}"></span>
+                <span class="ml5" ng-if="!venueEditModel.isSetColor">颜色标记</span>
+                <span class="ml5" ng-if="venueEditModel.isSetColor">标记:
+                    <span ng-class="(venueEditModel.colorFlag|colorFlagFilter:venueEditModel.colorFlag).css">
+                        {{(venueEditModel.colorFlag|colorFlagFilter:venueEditModel.colorFlag).name}}</span></span>
+            </a>
+
+            <div class="popover bottom fade in flag"
+                 ng-class="{'open':venueEditModel.flagSetting}">
+                <div class="arrow"></div>
+                <h3 class="popover-title">设置标记
+                    <button type="button" class="close" ng-click="venueEditModel.flagSetting=false"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                </h3>
+
+                <div class="popover-content">
+                    <div class="mb15">
+                        <div class="radio radio-inline">
+                            <label>
+                                <input type="radio" name="optionsRadios" ng-model="venueEditModel.colorFlag" value="0">
+                                红色
+                            </label>
+                        </div>
+                        <div class="radio radio-inline">
+                            <label>
+                                <input type="radio" name="optionsRadios" ng-model="venueEditModel.colorFlag" value="1">
+                                黄色
+                            </label>
+                        </div>
+                        <div class="radio radio-inline">
+                            <label>
+                                <input type="radio" name="optionsRadios" ng-model="venueEditModel.colorFlag" value="2">
+                                蓝色
+                            </label>
+                        </div>
+                        <div class="radio radio-inline">
+                            <label>
+                                <input type="radio" name="optionsRadios" ng-model="venueEditModel.colorFlag" value="3">
+                                绿色
+                            </label>
+                        </div>
+                    </div>
+                    <p class="help-block">
+                        设置颜色标记后,关闭的场地将会用所选颜色标注
+                    </p>
+                </div>
+                <div class="popover-bottom">
+                    <input type="button" class="btn btn-default btn-sm pull-left"
+                           ng-click="clearLockStockColorFlag()"
+                           value="清除标记">
+                    <!-- <div class="popover-bottom-content"></div>-->
+                    <input type="button" class="btn btn-default btn-sm" ng-click="venueEditModel.flagSetting=false"
+                           value="返回">
+                    <input type="button" class="btn btn-primary btn-sm" ng-click="setLockStockColorFlag()" value="确定">
+                </div>
+            </div>
+        </div>
+        <span class=" divider-vertical"></span>
+
+        <div class="form-group pr15" style="position: relative"><a href="javascript:;"
+                                                                   ng-click="venueEditModel.alarmSetting=true">
+            <span><span class="iconfont icon-alarm2" ng-class="{'light':venueEditModel.Alarm.isAlarm}"></span>
+                <span class="ml5" ng-if="!venueEditModel.Alarm.isAlarm">提醒我</span>
+                <span class="ml5"
+                      ng-if="venueEditModel.Alarm.isAlarm">提醒:{{venueEditModel.Alarm.alarmDate|date:'mediumDate'}}</span>
+            </span></a>
+
+            <div class="popover bottom fade in alarm"
+                 ng-class="{'open':venueEditModel.alarmSetting}">
+                <div class="arrow"></div>
+                <h3 class="popover-title">提醒设置
+                    <button type="button" class="close" ng-click="venueEditModel.alarmSetting=false"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                </h3>
+
+                <div class="popover-content">
+
+                    <div class="mb15">
+                        <label>提醒日期</label>
+
+                        <div class="date-picker alarmdate">
+
+                            <input type="text" class="form-control input-sm" ng-model="venueEditModel.alarmDate"
+                                   data-min-date="today"
+                                   bs-datepicker="" readonly/><i
+                                class="right-icon glyphicon glyphicon-calendar"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <label>提醒内容</label>
+                        <input type="text" class="form-control" placeholder="一个关场提醒" maxlength="30"
+                               ng-model="venueEditModel.alarmContent"/>
+                    </div>
+                </div>
+                <div class="popover-bottom">
+                    <input type="button" class="btn btn-default btn-sm" ng-click="clearLockStockAlarm()"
+                           value="清除">
+                    <input type="button" class="btn btn-default btn-sm" ng-click="venueEditModel.alarmSetting=false"
+                           value="取消">
+                    <input type="button" class="btn btn-primary btn-sm" ng-click="setLockStockAlarm()" value="确定">
+                </div>
+            </div>
+
+
+        </div>
+
+        <button type="submit" class="btn btn-success" ng-disabled="updateStockForm.$invalid||updateStockSubmitting">保存
+            {{updateStockSubmitting?'...':''}}
+        </button>
+        <button type="button" class="btn btn-default" ng-click="cancelEdit(venue.product_id,$index)">返回</button>
+        <span class="text-danger" ng-class="{'show':venueEditModel.hasError,'hidden':!venueEditModel.hasError}">{{venueEditModel.hasError}}</span>
+        <span class="text-success" ng-class="{'show':!venueEditModel.hasError,'hidden':venueEditModel.hasError}">{{venueEditModel.success}}</span>
+
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

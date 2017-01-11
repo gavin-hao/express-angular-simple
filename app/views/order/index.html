@@ -1,0 +1,97 @@
+<nav-top></nav-top>
+<div class="content">
+    <nav-left></nav-left>
+    <div class="park-content">
+        <div class="park-cont">
+
+
+            <div class="park-content">
+                <div class="park-cont">
+                    <!--订单页-->
+
+                    <div class="order-content">
+
+                        <div class="order-title">
+                            <form role="form" class="form-inline">
+                                <b>预定日期：<input type="text" class="form-control"
+                                               ng-model="selectedDate" data-date-format="yyyy-MM-dd"
+                                               data-date-type="number" data-autoclose="1" name="date" bs-datepicker>
+                                    - <input type="text" class="form-control"
+                                             ng-model="selectedDateAsNumber" data-date-format="yyyy-MM-dd"
+                                             data-date-type="number" data-autoclose="1" name="date2" bs-datepicker></b>
+                                <span>订单号：<input type="text" class="form-control"></span>
+                                <s>产品类别：<select>
+                                    <option>整场预订</option>
+                                    <option>散场预订</option>
+
+                                </select></s>
+                                <s>场地编号：<select>
+
+                                </select></s>
+                                <s>状态：<select>
+                                    <option>新单</option>
+                                    <option>待支付</option>
+                                    <option>已付款</option>
+                                    <option>付款失败</option>
+                                    <option>超时未付款</option>
+
+                                </select></s>
+                                <button class="btn btn-primary" ng-click="getorderlistbyfilter()">搜索</button>
+                            </form>
+                        </div>
+                        <div class="order-tab">
+                            <div class="table-responsive">
+                                <table class="table table-hover manage-table">
+                                    <thead>
+                                    <tr>
+                                        <td>订单号</td>
+                                        <td>产品类别</td>
+                                        <td>场地属性</td>
+                                        <td>场地编号</td>
+                                        <td>预订日期</td>
+                                        <td>时段</td>
+                                        <td>数量</td>
+                                        <td>状态</td>
+                                        <td>来源</td>
+                                        <td>订单金额</td>
+                                        <td>操作</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr ng-repeat="item in orderlistViewmodel">
+                                        <td style="vertical-align:top;">{{item.order_id}}</td>
+                                        <td style="vertical-align:top;"><span>{{item.order_typedes}}</span></td>
+                                        <td style="vertical-align:top;"><p ng-repeat="detailitem in item.order_detail">
+                                            {{detailitem.product_detail.indoor |
+                                            indoorFilter}}{{detailitem.product_detail.floortype | floorFilter}}
+                                            {{detailitem.product_detail.floodlit | standerdFilter}}</p></td>
+                                        <td style="vertical-align:top;"><p ng-repeat="detailitem in item.order_detail">
+                                            {{detailitem.venue_name}}</p></td>
+                                        <td style="vertical-align:top;"><p ng-repeat="detailitem in item.order_detail">
+                                            {{detailitem.product_bookingdate}}</p></td>
+                                        <td style="vertical-align:top;"><p ng-repeat="detailitem in item.order_detail">
+                                            {{detailitem.start_timeFromat}}-{{detailitem.end_timeFormat}}</p></td>
+                                        <td style="vertical-align:top;">0</td>
+                                        <td style="vertical-align:top;"><span>{{item.order_statedes}}</span></td>
+                                        <td style="vertical-align:top;"><span>{{item.order_fromdes}}</span></td>
+                                        <td style="vertical-align:top;"><b>{{item.order_amount}}元</b></td>
+                                        <td style="vertical-align:top;"><span
+                                                ng-click="addModal(item.order_id)">查看</span>&nbsp;&nbsp;<span
+                                                ng-click="updateorderstate(item.order_id,item.order_state,item.order_from)">{{item.order_state==1?item.order_from==1?"已支付":"":""}}</span>
+                                            &nbsp;&nbsp;<span ng-click="cancelorder(item.order_id,item.order_state,2)">{{item.order_state==1?item.order_from==1?"取消":"":""}}</span>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

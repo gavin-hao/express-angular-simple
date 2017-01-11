@@ -1,0 +1,133 @@
+<SCRIPT LANGUAGE="JavaScript">
+    <!--
+
+
+    //-->
+</SCRIPT>
+<div class="modal" tabindex="-1" role="dialog" ng-controller="dateModifyCtrl">
+    <div class="modal-dialog order-popup-wd">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">{{productName}}</b></h4>
+            </div>
+            <div class="modal-body">
+                <div class="edit-price">
+                    <!--<span><img src="images/price-close.png"></span>
+                    <h3>整场预订（室内木地板）</h3>-->
+                    <div class="price-time">
+                        <p>
+                            <select ng-model="price_year" ng-change="changeDate()">
+                                <option>2014</option>
+                                <option>2015</option>
+                                <option>2016</option>
+                                <option>2017</option>
+                                <option>2018</option>
+                                <option>2019</option>
+                            </select> 年
+                            <select ng-model="price_month" ng-change="changeDate()">
+                                <option>12</option>
+                                <option>11</option>
+                                <option>10</option>
+                                <option>9</option>
+                                <option>8</option>
+                                <option>7</option>
+                                <option>6</option>
+                                <option>5</option>
+                                <option>4</option>
+                                <option>3</option>
+                                <option>2</option>
+                                <option>1</option>
+                            </select> 月
+                        </p>
+                    </div>
+                    <div class="price-content">
+                        <div class="price-table">
+                            <table class="table table-bordered time-table">
+                                <thead>
+                                <tr>
+                                    <td>周日</td>
+                                    <td>周一</td>
+                                    <td>周二</td>
+                                    <td>周三</td>
+                                    <td>周四</td>
+                                    <td>周五</td>
+                                    <td>周六</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr  ng-repeat="m in weekArrays">
+                                    <!--<td class="not-light"><p>27</p></td>
+                                    <td class="not-light"><p>28</p></td>
+                                    <td class="not-light"><p>29</p></td>
+                                    <td class="not-light"><p>30</p></td>
+                                    <td><p>01</p></td>
+                                    <td><p>02</p></td>
+                                    <td><p>03</p></td>-->
+                                    <td ng-repeat="d in m track by $index">
+                                        <p>{{d}}</p>
+                                    </td>
+                                </tr>
+                               <!-- <tr>
+                                    <td><p>01</p></td>
+                                    <td class="choose-light"><p>04</p><span>998小时</span></td>
+                                    <td><p>03</p></td>
+                                    <td><p>04</p></td>
+                                    <td class="choose-light"><p>06</p><span>998小时</span></td>
+                                    <td><p>05</p></td>
+                                    <td><p>06</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>01</p></td>
+                                    <td><p>03</p></td>
+                                    <td><p>04</p></td>
+                                    <td class="choose-light"><p>04</p><span>998小时</span></td>
+                                    <td><p>05</p></td>
+                                    <td><p>06</p></td>
+                                    <td class="choose-light"><p>06</p><span>998小时</span></td>
+                                </tr>
+                                <tr>
+                                    <td><p>01</p></td>
+                                    <td class="choose-light"><p>04</p><span>998小时</span></td>
+                                    <td><p>03</p></td>
+                                    <td><p>04</p></td>
+                                    <td><p>05</p></td>
+                                    <td class="choose-light"><p>06</p><span>998小时</span></td>
+                                    <td><p>06</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>01</p></td>
+                                    <td><p>03</p></td>
+                                    <td class="choose-light"><p>04</p><span>998小时</span></td>
+                                    <td><p>04</p></td>
+                                    <td class="choose-light"><p>06</p><span>998小时</span></td>
+                                    <td><p>05</p></td>
+                                    <td><p>06</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p>01</p></td>
+                                    <td><p>03</p></td>
+                                    <td><p>04</p></td>
+                                    <td class="not-light"><p>04</p></td>
+                                    <td class="not-light"><p>05</p></td>
+                                    <td class="not-light"><p>06</p></td>
+                                    <td class="not-light"><p>06</p></td>
+                                </tr>-->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="change-price">
+                            <b><s>起止时间：</s><input class="form-control" type="text"> <input class="form-control" style="margin-top:10px;display:block;" type="text"></b>
+                            <span><s>修改价格：</s><input class="form-control" type="text">元/小时</span>
+                            <form>
+                                <button class="btn btn-primary">确定</button>
+                                <button class="btn btn-default active">取消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

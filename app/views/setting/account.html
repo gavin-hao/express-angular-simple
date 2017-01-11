@@ -1,0 +1,75 @@
+<nav-top></nav-top>
+<div class="layout-body">
+    <div class="layout-main-container">
+        <nav-left></nav-left>
+        <div class="top-tab-panel border-bottom-line">
+            <div class="top-tab-panel-body">
+                <ul class="nav nav-tabs top-nav-tab">
+                    <li role="presentation"><a href="/setting">场馆基本信息</a></li>
+                    <li role="presentation"><a href="/setting/security">安全设置</a></li>
+                    <li role="presentation" class="active"><a href="/setting/account">账户设置</a></li>
+                    <li role="presentation"><a href="/setting/message/0">消息中心</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+            <div class="container-body body-bg-white">
+                <section class="mt30">
+                    <h3 class="">账户管理</h3>
+
+                    <div class="row bg-grey">
+                        <div class="col-sm-6">
+                            <form class="" role="form" ng-submit="addAccount()">
+                                <div class="form-group">
+
+                                    <label class="" for="username">邮箱</label>
+                                    <input type="email" class="form-control" id="username" placeholder="邮箱" ng-model="viewModel.email" required="">
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="" for="nick_name">用户名</label>
+                                    <input type="text" class="form-control" id="nick_name" placeholder="姓名" ng-model="viewModel.userName" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label class="" for="nick_name">手机号</label>
+                                    <input type="tel" class="form-control" id="mobile" placeholder="手机号" ng-model="viewModel.mobile" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label class="" for="password">密码</label>
+                                    <input type="password" class="form-control" id="password" placeholder="密码" ng-model="viewModel.password" required="">
+                                </div>
+                                <div class="" id="alerts-container"></div>
+                                <button type="submit" class="btn btn-info"><span class="fa fa-plus"></span>创建新账户
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </section>
+                <section class="mt30">
+                    <h4>所有账户</h4>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>邮箱</th>
+                            <th>姓名</th>
+                            <th>手机</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in staffList">
+                            <td>{{$index}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.user_name}}</td>
+                            <td>{{item.mobile}}</td>
+                            <td><a ng-click="deleteStaff(item.id)">删除</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

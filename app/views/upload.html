@@ -1,0 +1,380 @@
+<nav-top xmlns="http://www.w3.org/1999/html"></nav-top>
+<div class="content">
+<nav-left></nav-left>
+<div class="park-content">
+<div class="park-cont">
+
+<div class="second-content container-fluid">
+<h3></h3>
+
+<div class="col-lg-offset-1" bs-navbar>
+    <ul class="nav nav-tabs" role="tablist">
+        <li data-match-route="/g"><a href="/g">商家基本信息</a></li>
+        <li data-match-route="/g/v"><a href="/g/v">场地服务信息</a></li>
+        <li><a href="/gym/qualification">商家资质信息</a></li>
+        <li><a href="/gym/balance2">签约结算信息</a></li>
+    </ul>
+</div>
+<style>
+
+    .gym-section-title {
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #ddd;
+        position: relative;
+        text-align: left;
+        line-height: 30px;
+        margin: 20px 0;
+        background: #ddd;
+    }
+
+    .gym-section-title span {
+
+        background: #a94442;
+        display: inline-block;
+        color: #fff;
+        font-size: 12px;
+        line-height: 30px;
+    }
+
+    .gym-venue-list li.venue-item {
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-top: 0;
+        border-top: 1px dotted #c5c5c5;
+        border-bottom: 0;
+        background: #fff;
+        /*margin-left: 5px;*/
+        padding: 0;
+        /*padding-left: 10px;*/
+        line-height: 15px
+    }
+
+    .gym-venue-list li.venue-item .venue-item-li {
+        overflow: hidden;
+        padding-bottom: 10px;
+        /*padding-left: 10px;*/
+        padding-top: 10px
+    }
+
+    .gym-venue-list li.venue-item .venue-item-li:hover {
+        background-color: #ddd
+    }
+
+    .gym-venue-list .venue-prop {
+        padding-top: 10px;
+        vertical-align: middle
+    }
+
+    .gym-venue-list .venue-op a {
+        margin-left: 15px;
+    }
+</style>
+<div class="">
+<div bs-collapse>
+    <div class="gym-section-title col-lg-offset-1" style="display: block;">
+        <span bs-collapse-toggle>场馆信息</span>
+        <span bs-collapse-toggle class="pull-right glyphicon glyphicon-chevron-down"></span>
+    </div>
+    <div bs-collapse-target="">
+        <form role="form" class="form-horizontal" name="form1" novalidate>
+            <div class="form-group" ng-class="{'has-error': form1.$dirty&&form1.gymName.$invalid}">
+                <label for="gymName" class="control-label col-sm-2 "><b>*</b>场馆名称：</label>
+
+                <div class="col-sm-8">
+                    <p class="form-control-static" id="gymName">email@example.com</p>
+                    <!--<input type="text" class="form-control" ng-model="name" id="gymName" name="gymName"
+                           ng-pattern="/\w*/"
+                           required ng-minlength="4"
+                           placeholder="请输入名称">
+
+                    <div ng-messages="form1.$dirty&&form1.gymName.$error">
+                        <span ng-message="required" class="help-block">输入场馆名称</span>
+                        <span ng-message="minlength" class="help-block">4字符以上</span>
+                    </div>-->
+
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': form1.$dirty&&form1.time2.$invalid}">
+                <label for="time2" class="control-label col-sm-2">
+                    起始时段： </label>
+
+                <div class="col-sm-2">
+                    <input type="text" class="form-control" size="5" ng-model="selectedTimeAsNumber"
+                           data-time-format="HH:mm" data-time-type="number" data-min-time="10:00"
+                           data-length="1" data-minute-step="60" data-arrow-behavior="pager"
+                           data-max-time="23:00" data-autoclose="1" id="time2" name="time2"
+                           bs-timepicker>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-error': form1.$dirty&&form1.city.$invalid}">
+                <label for="city" class="control-label col-sm-2"><b>*</b>城市2：</label>
+
+                <div class="col-sm-4">
+
+                    <button type="button" class="btn-default form-control change-btn" id="city" name="city"
+                            ng-model="selectedCity" required=""
+                            ng-options="city for city in cities"
+                            data-placeholder="选择城市" bs-select><span class="caret"></span></button>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form1.$dirty&&form1.city.$invalid}">
+                <label for="city" class="control-label col-sm-2"><b>*</b>区：</label>
+
+                <div class="col-sm-4">
+
+                    <button type="button" class="btn-default form-control change-btn" id="area" name="area"
+                            ng-model="selectedCity" required=""
+                            ng-options="city for city in areas"
+                            data-placeholder="选择区" bs-select><span class="caret"></span></button>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form1.$dirty&&form1.city.$invalid}">
+                <label for="city" class="control-label col-sm-2"><b>*</b>城市2：</label>
+
+                <div class="col-sm-4">
+
+                   <button class="btn btn-warning" ng-click="test1()">test</button>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': form1.$dirty&&(form1.fromDate.$invalid||form1.untilDate.$invalid)}">
+                <label for="fromDate" class="control-label col-sm-2">起止日期：</label>
+
+                <div class="col-sm-8">
+                    <div class="form-control">
+                        <input type="text" class="" ng-model="fromDate" name="fromDate" style="border: none"
+                               id="fromDate" required
+                               data-max-date="{{untilDate}}" placeholder="2014/11/06" bs-datepicker="">
+                        <span class="">--</span>
+                        <input type="text" class="col-sm-offset-1" ng-model="untilDate" name="untilDate"
+                               style="border: none" required
+                               data-min-date="{{fromDate}}" placeholder="2014/12/06" bs-datepicker="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group has-success  has-feedback"
+                 ng-class="{'has-error': form1.$dirty&&form1.area.$invalid}">
+                <label for="area" class="control-label col-sm-2">行政区县：</label>
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="area" name="area" required
+                           placeholder="请输入名称">
+                    <span class="form-control-feedback">必填</span>
+
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': form1.addr1.$invalid}">
+                <label for="addr1" class="control-label col-sm-2">办公地址：</label>
+
+                <div class="col-sm-8 has-feedback">
+                    <input type="email" class="form-control" ng-model="addr1" id="addr1" name="addr1" ng-minlength="8"
+                           required
+                           placeholder="请输入名称">
+                    <span class="form-control-feedback">必填</span>
+                    <div ng-messages="form1.$dirty&&form1.addr1.$error">
+                        <!-- this required message has overridden the template message -->
+                        <span class="help-block" ng-message="required">You did not enter your email address</span>
+
+                        <!-- this is a brand new message and will appear last in the prioritization -->
+                        <div ng-message="email">Your email address is invalid</div>
+                        <div ng-message="minlength">Your email address is to short</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': false && form1.tel.$invalid}">
+                <label for="tel" class="control-label col-sm-2"><b>*</b>办公电话：</label>
+
+                <div class="col-sm-8 ">
+                    <p class="form-control">
+                        <input type="text" id="code" name="code" placeholder="010" style="border: none;max-width: 50px"
+                               class="ck-input">
+                        <span>-</span>
+                        <input type="text" id="tel" name="tel" ng-model="tel" class=""
+                               required ng-pattern="/\d*/" style="border: none">
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-sm-2"><b>*</b>联系人：</label>
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name"
+                           placeholder="请输入名称">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="control-label col-sm-2">
+                    <b>*</b>手机号码：</label>
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name"
+                           placeholder="请输入名称">
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="gymmail" class="control-label col-sm-2">邮箱：</label>
+
+                <div class="col-sm-8 ">
+                    <input type="text" class="form-control" id="gymmail" name="gymmail"
+                           placeholder="请输入名称">
+                    <span class="form-control-feedback">必填</span>
+                </div>
+            </div>
+
+            <div class="form-group ">
+
+                <label for="name" class="control-label col-sm-2">商家简介：</label>
+
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+
+            </div>
+            <div class="form-group ">
+                <div class="col-md-offset-2">
+                    <button type="submit" class="btn btn-primary mt">提交</button>
+                    <!--<button type="submit" class="btn pd">取消</button>
+                    <button class="btn btn-danger" data-animation="am-fade-and-slide-top"
+                            data-template="views/modal-demo.html" bs-modal="modal"> 弹出模态框
+                    </button>
+                    <button type="button" class="btn btn-lg btn-danger" title="{{popover.title}}"
+                            data-placement="bottom" data-content="{{popover.content}}"
+                            data-template="/views/modal-demo.html" data-animation="am-flip-x" bs-popover>
+                        Custom Popover
+                        <br>
+                        <small>(using data-template)</small>
+                    </button>-->
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<div bs-collapse>
+    <div class="gym-section-title" style="display: block;">
+        <span bs-collapse-toggle>场馆图片</span>
+        <span bs-collapse-toggle class="pull-right glyphicon glyphicon-chevron-down"></span>
+    </div>
+    <div bs-collapse-target class="col-sm-offset-1">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <!--<label for="name" class="control-label col-sm-2"><b>*</b>场馆图片：</label>-->
+
+                <div class="col-sm-8">
+                    <div class="site-pic form-control">
+                        <ul>
+
+                            <li ng-repeat="image in images">
+                                <a href="javascript:;"><img src="/images/upload.png"><b
+                                        ng-click="deleteImg($index,false)"></b></a>
+
+                            </li>
+                            <li ng-repeat="up in upload" ng-hide="up.deleted">
+                                <a href="javascript:;"><img ng-src="{{up.preview}}"><b
+                                        ng-click="deleteImg($index,true)"></b>
+
+                                    <p><s></s><span style="width:{{up.progress}}%"></span></p></a>
+                            </li>
+                            <!--<li ng-repeat="f in selectedFiles">-->
+                            <!--<a href="#"><img src="/images/upload.png"><b-->
+                            <!--ng-click="deleteImg(result.id,true)"></b></a>-->
+                            <!--<img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}">-->
+                            <!--</li>-->
+                            <li><a href="javascript:;" ng-click="showfileDialg()">
+                                <input id="imgUploader" type="file" style="display: none"
+                                       ng-file-select="onFileSelect($files)"
+                                       accept="image/*" multiple>
+                                <img src="/images/upload.png"/></b></a></li>
+                        </ul>
+
+                    </div>
+                    <span class="help-block">1. 图片格式为JPG、PNG；2. 图片大小在500K以下；3. 建议尺寸为320×160。</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div bs-collapse>
+    <div class="gym-section-title" style="display: block;">
+        <span bs-collapse-toggle>场地信息</span>
+        <span bs-collapse-toggle class="pull-right glyphicon glyphicon-chevron-down"></span>
+    </div>
+    <div bs-collapse-target class="col-sm-offset-1">
+        <form name="newVenueForm" role="form" class="form-inline"
+              ng-submit="submitVenueForm()" novalidate>
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" type="number" name="no" id="no" placeholder="场地编号">
+
+                    <div class="input-group-addon">号场地</div>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <button type="button" class="btn-default form-control change-btn" id="standerd" name="standerd"
+                        ng-model="standerd" required=""
+                        ng-options="st for st in ['全场','半场']"
+                        data-placeholder="场地大小" bs-select><span class="caret"></span></button>
+
+            </div>
+            <div class="form-group">
+
+                <button type="button" class="btn-default form-control change-btn" id="floor" name="floor"
+                        ng-model="selectedCity" required=""
+                        ng-options="fl for fl in ['木地板','塑胶','水泥地']"
+                        data-placeholder="地板类型" bs-select><span class="caret"></span></button>
+
+            </div>
+            <div class="form-group">
+
+                <button type="button" class="btn-default form-control change-btn" id="indoor" name="indoor"
+                        ng-model="selectedCity" required=""
+                        ng-options="indoor for indoor in ['室内','室外']"
+                        data-placeholder="场地类型" bs-select><span class="caret"></span></button>
+            </div>
+
+            <button type="submit" class="btn btn-primary">保存</button>
+        </form>
+        <div ng-if="noVenue"><p>场地信息会在这里显示,现在开始<a class="btn btn-info" ng-click="showAddVenue()">添加场地</a></p></div>
+        <div ng-if="!false" class="col-sm-10">
+            <ul class="gym-venue-list">
+                <li class="venue-item">
+                    <div class="venue-item-li">
+                        <div class="pull-left col-sm-2 venue-prop">1号场地</div>
+                        <div class="pull-left col-sm-2 venue-prop">全场</div>
+                        <div class="pull-left col-sm-2 venue-prop">木地板</div>
+                        <div class="pull-left col-sm-2 venue-prop">室内</div>
+                        <div class="pull-right col-sm-4 venue-prop venue-op"><a>修改</a><a>删除</a>
+                        </div>
+
+                    </div>
+                </li>
+                <li class="venue-item">
+                    <div class="venue-item-li">
+                        <div class="pull-left col-sm-2 venue-prop">1号场地</div>
+                        <div class="pull-left col-sm-2 venue-prop">全场</div>
+                        <div class="pull-left col-sm-2 venue-prop">木地板</div>
+                        <div class="pull-left col-sm-2 venue-prop">室内</div>
+                        <div class="pull-right col-sm-4 venue-op"><a>修改</a><a>删除</a><a
+                                class="btn btn-info btn-sm" ng-click="showAddVenue()">继续添加</a></div>
+
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

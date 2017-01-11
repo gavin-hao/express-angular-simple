@@ -1,0 +1,204 @@
+<div class="modal" tabindex="-1" role="dialog" ng-controller="repertoryCtrl">
+    <div class="modal-dialog" style="width:960px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">修改库存</b></h4>
+            </div>
+            <div class="modal-body">
+                <div class="edit-repertory">
+                    <!--<h3>修改库存数量</h3>-->
+                    <!--选择日期的头部-->
+                    <div class="repertory-title">
+                        <div class="repertory-title-left">
+                            <input type="text" class="form-control" id="name" placeholder="2014年10月10日">
+                            <button class="btn btn-success"> &lt; 前两周</button>
+                            <button class="btn btn-success"> &gt; 后两周</button>
+
+                        </div>
+                        <div class="repertory-title-right">
+                            <p>库存示例：<b>剩余数</b>/<span>场地总数</span></p>
+                        </div>
+                    </div>
+                    <div class="repertory-table table-responsive">
+                        <table class="table table-bordered repertory-number">
+                            <thead>
+                            <tr>
+                                <td>室内木地板</td>
+                                <td>周一<p>10.10</p></td>
+                                <td>周二<p>10.11</p></td>
+                                <td>周三<p>10.12</p></td>
+                                <td>周四<p>10.13</p></td>
+                                <td>周五<p>10.14</p></td>
+                                <td>周六<p>10.15</p></td>
+                                <td>周日<p>10.16</p></td>
+                                <td>周一<p>10.17</p></td>
+                                <td>周二<p>10.18</p></td>
+                                <td>周三<p>10.19</p></td>
+                                <td>周四<p>10.20</p></td>
+                                <td>周五<p>10.21</p></td>
+                                <td>周六<p>10.22</p></td>
+                                <td>周日<p>10.23</p></td>
+                                <td>操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>17:00-18:00</td>
+                                <td>5 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td class="blue-color">18 / 27</td>
+                                <td>0 / 27</td>
+                                <td class="blue-color">17 / 27</td>
+                                <td class="red-color">19 / 27</td>
+                                <td>20 / 27</td>
+                                <td>18 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td class="blue-color">1 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td>17 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td class="blue-color">17 / 27</td>
+                                <td><a ng-click="batchedit()"> <b>批量修改</b></a></td>
+                            </tr>
+                            <tr>
+                                <td>17:00-18:00</td>
+                                <td class="blue-color">5 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td class="red-color">18 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td>17 / 27</td>
+                                <td class="blue-color">19 / 27</td>
+                                <td>20 / 27</td>
+                                <td class="blue-color">18 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td class="red-color">1 / 27</td>
+                                <td>17 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td>0 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td><a href="#"> <b>批量修改</b></a></td>
+                            </tr>
+                            <tr>
+                                <td>17:00-18:00</td>
+                                <td>5 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td class="red-color">18 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td class="blue-color">19 / 27</td>
+                                <td>20 / 27</td>
+                                <td class="blue-color">18 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td class="red-color">1 / 27</td>
+                                <td>17 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td>17 / 27</td>
+                                <td><a href="#"> <b>批量修改</b></a></td>
+                            </tr>
+                            <tr>
+                                <td>17:00-18:00</td>
+                                <td class="red-color">5 / 27</td>
+                                <td>0 / 27</td>
+                                <td class="red-color">18 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td class="blue-color">17 / 27</td>
+                                <td class="red-color">19 / 27</td>
+                                <td>20 / 27</td>
+                                <td class="red-color">18 / 27</td>
+                                <td>0 / 27</td>
+                                <td class="red-color">1 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td>17 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td class="blue-color">17 / 27</td>
+                                <td><a href="#"> <b>批量修改</b></a></td>
+                            </tr>
+                            <tr>
+                                <td>17:00-18:00</td>
+                                <td class="red-color">5 / 27</td>
+                                <td>0 / 27</td>
+                                <td class="red-color">18 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td class="blue-color">19 / 27</td>
+                                <td>20 / 27</td>
+                                <td class="red-color">18 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td>1 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td class="blue-color">17 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td class="blue-color">17 / 27</td>
+                                <td><a href="#"> <b>批量修改</b></a></td>
+                            </tr>
+                            <tr>
+                                <td>17:00-18:00</td>
+                                <td class="blue-color">5 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td class="red-color">18 / 27</td>
+                                <td>0 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td class="blue-color">19 / 27</td>
+                                <td class="red-color">20 / 27</td>
+                                <td>18 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td>1 / 27</td>
+                                <td class="blue-color">17 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td><a href="#"> <b>批量修改</b></a></td>
+                            </tr>
+                            <tr>
+                                <td>17:00-18:00</td>
+                                <td class="blue-color">5 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td>18 / 27</td>
+                                <td class="red-color">0 / 27</td>
+                                <td class="blue-color">17 / 27</td>
+                                <td>19 / 27</td>
+                                <td class="blue-color">20 / 27</td>
+                                <td class="red-color">18 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td class="red-color">1 / 27</td>
+                                <td class="blue-color">17 / 27</td>
+                                <td>17 / 27</td>
+                                <td class="blue-color">0 / 27</td>
+                                <td class="red-color">17 / 27</td>
+                                <td><a href="#"><b>批量修改</b></a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--<button class="btn btn-primary">确定</button>-->
+                    </div>
+
+                </div>
+                <div class="batch-edit" ng-controller="batchCtrl">
+                    <h3>批量修改</h3>
+                    <div class="batch-time">
+                        <b>起止时间：</b><button class="btn"><img src="images/choose-time.png"> </button> - <button class="btn"><img src="images/choose-time.png"> </button>
+                    </div>
+                    <div class="choose-place">
+                        <b>库存场地：</b>
+                        <ul>
+                            <li><a href="#">1号场</a></li>
+                            <li><a href="#">2号场</a> </li>
+                            <li><a href="#" class="active">3号场</a></li>
+                            <li><a href="#">4号场</a></li>
+                        </ul>
+                    </div>
+                    <div class="place-bottom">
+                        <p><a href="#"><img src="images/choose-close.png"></a>关闭全部剩余库存</p>
+                        <form>
+                            <button class="btn btn-primary">提交</button>
+                            <button class="btn btn-default active">取消</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

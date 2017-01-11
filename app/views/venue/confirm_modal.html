@@ -1,0 +1,20 @@
+<div class="modal confirm-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" ng-click=""><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>-->
+                <h4 class="modal-title">{{confirm_modal.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{confirm_modal.content}}</p>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn btn-default" ng-click="confirm_modal.onCancel()" value="取消">
+                <input type="button" class="btn btn-primary" ng-click="confirm_modal.onOk()" value="确定">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->

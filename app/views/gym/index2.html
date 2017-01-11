@@ -1,0 +1,22 @@
+<nav-top></nav-top>
+<div class="content">
+    <nav-left></nav-left>
+    <div class="park-content">
+        <div class="park-cont">
+
+            <div class="container-fluid">
+                <h3 ng-model="tab"></h3>
+                <div class="col-lg-offset-1"  bs-navbar>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li data-match-route="/gym/prod"><a href="/gym/prod">场馆基本信息</a></li>
+                        <li data-match-route="/gym/image"><a href="/gym/image">场馆图片信息</a></li>
+                        <li data-match-route="/gym/venue"><a href="/gym/venue">场地基本信息</a></li>
+                        <!--<li><a href="/gym/qualification">商家资质信息</a></li>
+                        <li><a href="/gym/balance2">签约结算信息</a></li>-->
+                    </ul>
+                </div>
+                <div class="" ng-include="tab.contentTemplate"></div>
+            </div>
+        </div>
+    </div>
+</div>

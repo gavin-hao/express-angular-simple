@@ -1,0 +1,118 @@
+<div class="popover prod-add-info-popover" tabindex="-1">
+    <div class="arrow"></div>
+    <h3 class="popover-title" ng-bind-html="title" ng-show="title"></h3>
+
+    <div class="popover-content">
+<div class="add-Information" ng-controller="addproCtrl">
+    <form role="form" class="form-horizontal" ng-submit="processForm()">
+        <div class="form-group">
+            <label for="producttype" class="control-label col-sm-1">产品类型：</label>
+            <div class="col-sm-2">
+                <select ng-model="producttype" id="producttype" name="producttype"
+                        ng-options="m.id as m.productName for m in ptmodel">
+                    <option value="">-- 请选择 --</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="indoor" class="control-label col-sm-1">场地属性：</label>
+            <select ng-model="indoor" id="indoor" name="indoor" ng-options="m.productName for m in indoormodel" required
+                    ng-change="changeIndoor()">
+                <option value="">-- 请选择 --</option>
+            </select>
+            <select ng-model="floor" id="floor" name="floor" ng-options="m.productName for m in floormodel" required
+                    ng-change="changeFloor()">
+                <option value="">-- 请选择 --</option>
+            </select>
+            <select ng-model="standerd" id="standerd" name="standerd" required=""
+                    ng-options="m.productName for m in standerdmodel" ng-change="changeStanderd()">
+                <option value="">-- 请选择 --</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="indoor" class="control-label col-sm-1">产品名称：</label>
+            <input type="text" class="form-control" id="productName" name="productName" ng-model="productName" placeholder="{{indoor.productName}}{{floor.productName}}{{standerd.productName}}"/>
+        </div>
+        <div class="form-group" ng-show="venueResult.length>0">
+            <label for="" class="control-label col-sm-1">库存场地：</label>
+            <div class="Venues-service col-sm-6">
+                <ul>
+                    <!--<li><a href="#" class="active">1号场</a></li>
+                    <li><a href="#">2号场</a></li>
+                    <li><a href="#" class="active">3号场</a></li>
+                    <li><a href="#" class="active">4号场</a></li>
+                    <li><a href="#" class="active">3号场</a></li>
+                    <li><a href="#" class="active">4号场</a></li>-->
+                    <li class="active" ng-repeat="o in venueResult" ng-click="operateVenue(o)">
+                        <a class="active" id="v-{{o.id}}" vid="{{o.id}}" tag="venue">{{o.name}}号场</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-group mht">
+            <label for="sdate" class="control-label col-sm-1">开始日期：</label>
+            <div class="btn-group col-sm-4">
+                <!--<input type="text" class="form-control">-->
+                <input type="text" class="form-control" id="sdate" name="sdate" ng-model="viewModel.sdate" data-autoclose="1" required
+                       bs-datepicker/>
+                <!--<b><img src="/images/choose-time.png"> </b>-->
+            </div>
+        </div>
+        <div class="form-group mht">
+            <label for="edate" class="control-label col-sm-1">结束日期：</label>
+            <div class="btn-group col-sm-4">
+                <input type="text" class="form-control" id="edate" name="edate" ng-model="viewModel.edate" data-autoclose="1" data-min-date="{{viewModel.sdate}}"
+                       required bs-datepicker/>
+                <!--<b><img src="/images/choose-time.png"> </b>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="issue" class="control-label col-sm-1">预定须知：</label>
+            <div class="col-sm-4">
+                <textarea class="form-control" ng-model="viewModel.issue" id="issue" name="issue" required></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="shours" class="control-label col-sm-1">时段：</label>
+            <!--<select style="margin-right:0px;" ng-model="shours" id="shours" name="shours" ng-options="m.text for m in hourModel">
+                <option value="">请选择</option>
+            </select>
+            -
+            <select ng-model="ehours" id="ehours" name="ehours" ng-options="m.text for m in hourModel">
+                <option value="">请选择</option>
+            </select>-->
+            <input type="text" class="form-control" size="5" ng-model="shours" required
+                   data-time-format="HH:mm" data-time-type="date" data-min-time="00:00"
+                   data-length="1" data-minute-step="60" data-arrow-behavior="pager"
+                   data-max-time="23:00" data-autoclose="1" id="shours" name="shours"
+                   bs-timepicker>
+            -
+            <input type="text" class="form-control" size="5" ng-model="ehours" required
+                   data-time-format="HH:mm" data-time-type="date" data-min-time="{{shours}}"
+                   data-length="1" data-minute-step="60" data-arrow-behavior="pager"
+                   data-max-time="23:00" data-autoclose="1" id="ehours" name="ehours"
+                   bs-timepicker>
+
+        </div>
+        <div class="form-group">
+            <label for="price" class="control-label col-sm-1">价格：</label>
+            <div class="col-sm-3">
+                <input class="form-control" ng-model="price" type="text" id="price" name="price" required>元
+            </div>
+        </div>
+        <div class="form-group">
+            <div ng-show="isshowtip"  ng-class="alert.type" role="alert" style="margin-left: 50px;width: 610px; margin-top: 20px">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <strong>{{alert.title}}!</strong> {{alert.content}}
+            </div>
+        </div>
+
+        <div class="btn-fun">
+            <button type="submit" class="btn btn-primary mt">提交</button>
+            <button type="submit" class="btn pd" ng-click="popover.saved=true;$hide();refreshParent();">取消</button>
+        </div>
+    </form>
+</div>
+        </div>
+    </div>

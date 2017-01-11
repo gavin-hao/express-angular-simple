@@ -1,0 +1,77 @@
+<nav-top></nav-top>
+<div class="layout-body">
+    <div class="layout-main-container">
+        <nav-left></nav-left>
+        <div class="top-tab-panel border-bottom-line">
+            <div class="top-tab-panel-body">
+                <ul class="nav nav-tabs top-nav-tab">
+                    <li role="presentation"><a href="/setting">场馆基本信息</a></li>
+                    <li role="presentation"><a href="/setting/security">安全设置</a></li>
+                    <li role="presentation"><a href="/setting/account">账户设置</a></li>
+                    <li role="presentation" class="active"><a href="/setting/message/1">消息中心</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container-fluid" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+            <div class="container-body body-bg-white">
+                <section class="mt30">
+                    <h3 class="">消息中心</h3>
+                </section>
+                <section class="mt30">
+                    <div>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-info active" ng-click="getMymsg(0)">消息<span
+                                    class="badge">{{msgtotal}}</span></button>
+                            <button type="button" class="btn btn-info" ng-click="getMymsg(1)">提醒<span class="badge">{{noticetotal}}</span>
+                            </button>
+                        </div>
+                        <div class="pull-right"><em>仅显示最近 30 天的消息</em></div>
+                    </div>
+                    <table class="table table-hover mt30 msg-list">
+                        <thead>
+                        <tr>
+                            <th>标题</th>
+                            <th>内容</th>
+                            <th>时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="n in viewModel"><!-- ng-click="readMsg(n.id,n.state)"-->
+                            <td class="td-title"><span class='message-flag'
+                                                       ng-class="{'new':n.state==0,'read':n.state==1}"></span>{{n.title}}
+                            </td>
+
+                            <td class="td-content">{{n.content}}
+                            </td>
+                            <td class="td-time">{{n.create_time}}</td>
+                            <td class="td-op">
+                                <a href="#" ng-click="readMsg(n.id,n.state)">不再提醒</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="#" ng-click="deleteMsg(n.id,$event)">删除</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--<nav class="bottom-pager pull-right">
+                        <ul class="pagination">
+                            <li class="disabled"><a href="#"><span>&laquo;</span><span class="">上一页</span></a></li>
+                            <li class="active"><a href="/setting/message/1">1</a></li>
+                            <li><a href="/setting/message/2">2</a></li>
+                            <li><a href="/setting/message/3">3</a></li>
+                            <li><a href="/setting/message/4">4</a></li>
+                            <li><a href="/setting/message/5">5</a></li>
+                            <li><a href="#"><span class="">下一页</span><span aria-hidden="true">&raquo;</span></a></li>
+                        </ul>
+                    </nav>-->
+                    <nav class="bottom-pager pull-right">
+                        <ul class="pagination">
+                            <li ng-class="{'disabled':currentPage==0}" ng-show="showPager"><a href="/setting/message/{{prePager}}"><span>&laquo;</span><span class="">上一页</span></a></li>
+
+                            <li ng-class="{'active':currentPage==p}" ng-repeat="p in currentArray"><a href="/setting/message/{{p}}">{{p+1}}</a></li>
+                            <li ng-class="{'disabled':currentPage==msgAlltotal.length-1}" ng-show="showPager"><a href="/setting/message/{{nextPager}}"><span class="">下一页</span><span aria-hidden="true">&raquo;</span></a></li>
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

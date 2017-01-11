@@ -1,0 +1,185 @@
+<nav-top></nav-top>
+<div class="layout-body">
+    <div class="layout-main-container">
+        <nav-left></nav-left>
+        <div class="container-fluid" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+            <div class="container-body">
+
+                <div class="venue-create-form">
+                    <form role="form" class="" ng-submit="newVenueFormSubmit()" name="newVenueForm" novalidate>
+                        <div class="form-group">
+                            <div class="input-group input-group-default col-xs-8">
+                                <div class="input-wrap"
+                                     ng-class="{'form-valid-error': newVenueForm.$dirty&&newVenueForm.newVenueName.$invalid}">
+                                    <div class="venue-prop">
+                                        <a class="venue-prop-filed" href="#" ng-click="showProperSelect=true">
+                                            <span ng-repeat="prop in venueNewProperty">{{prop|venuePropertyFilter:prop.value}}</span>
+                                            <i class="arrow-down iconfont icon-movedown"></i></a>
+
+                                        <div class="venue-prop-select popover bottom fade in"
+                                             ng-class="{'open':showProperSelect}">
+                                            <h3 class="popover-title">设置场地属性
+                                                <button type="button" class="close"
+                                                        ng-click="showProperSelect=false"><span
+                                                        aria-hidden="true">&times;</span><span
+                                                        class="sr-only">Close</span>
+                                                </button>
+                                            </h3>
+                                            <div class="popover-content">
+
+                                                <div class="prop-item">
+                                                    <div class="prop-title"><strong>室内/室外</strong></div>
+                                                    <label class="radio-inline"
+                                                           ng-repeat="i in venuePropertiesModel.indoorModel">
+                                                        <input type="radio" name="indoor" ng-value="i"
+                                                               ng-model="selectedIndoor"
+                                                               ng-checked="i.value==selectedIndoor.value"
+                                                               ng-click="properItemChanged($index,0)"> {{i.text}}
+                                                    </label>
+
+                                                </div>
+
+                                                <div class="prop-item">
+                                                    <div class="prop-title"><strong>地板材质</strong></div>
+                                                    <label class="radio-inline"
+                                                           ng-repeat="i in venuePropertiesModel.floorTypeModel">
+                                                        <input type="radio" name="floor" ng-value="i"
+                                                               ng-click="properItemChanged($index,1)"
+                                                               ng-model="selectedFloor"
+                                                               ng-checked="i.value==selectedFloor.value">
+                                                        {{i.text}}
+                                                    </label>
+
+                                                </div>
+                                                <div class="prop-item">
+                                                    <div class="prop-title"><strong>全场/半场</strong></div>
+                                                    <label class="radio-inline"
+                                                           ng-repeat="i in venuePropertiesModel.standerdModel">
+                                                        <input type="radio" name="standerd" ng-value="i"
+                                                               ng-click="properItemChanged($index,2)"
+                                                               ng-model="selectedStanderd"
+                                                               ng-checked="i.value==selectedStanderd.value">
+                                                        {{i.text}}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="popover-bottom">
+                                                <!-- <div class="popover-bottom-content"></div>-->
+                                                <a class="btn btn-default btn-sm"
+                                                   ng-click="showProperSelect=false">取消</a>
+                                                <a class="btn btn-primary btn-sm" ng-click="setProperty()">确定</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="venue-name">
+                                        <input class="form-control" type="text" placeholder="1号场" required=""
+                                               maxlength="4"
+                                               id="newVenueName" name="newVenueName"
+                                               ng-model="newVenue.name" ng-focus="clearKeys()" ng-blur="setKeys()">
+                                    </div>
+                                </div>
+
+                                <button type="submit" ng-disabled="newVenueForm.$invalid||submitting"
+                                        class="btn btn-success btn-submit">创建场地{{submitting?'...':''}}
+                                </button>
+                            </div>
+                            <input type="hidden" ng-model="newVenue.indoor" name="indoor">
+                            <input type="hidden" ng-model="newVenue.floor" name="floor">
+                            <input type="hidden" ng-model="newVenue.standerd" name="standerd">
+
+                        </div>
+                        <div id="venue_add_msg"></div>
+                    </form>
+                </div>
+                <div class="venue-container">
+                    <div class="date-list-panel">
+                        <div class="selected-date">
+                            <div class="date-wrapper">
+                                <a href="javascript:;" ng-click="searchDaySeletting=true">
+                                    <p bs-tooltip="" data-title="点击选择其他日期">{{searchDay|date:'EEEE'}}</p>
+                                    <span>{{searchDay|date:'mediumDate'}}</span>
+                                </a>
+
+                                <div class="popover bottom fade in"
+                                     ng-class="{'open':searchDaySeletting}">
+                                    <div class="arrow"></div>
+                                    <h3 class="popover-title">切换日期
+                                        <button type="button" class="close" ng-click="searchDaySeletting=false"><span
+                                                aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                        </button>
+                                    </h3>
+
+                                    <div class="popover-content">
+                                        <div>
+                                            <label>选择查询日期</label>
+
+                                            <div class="date-picker start">
+
+                                                <input type="text" class="form-control"
+                                                       ng-model="searchDay"
+                                                       data-min-date="{{today}}"
+
+                                                       bs-datepicker=""/><i
+                                                    class="right-icon glyphicon glyphicon-calendar"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="popover-bottom">
+                                        <input type="button" class="btn btn-primary btn-sm"
+                                               ng-click="searchDaySeletting=false"
+                                               value="确定">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="week-list">
+                            <ul>
+                                <li class="" ng-class="{'active':day.selected}"
+                                    ng-repeat="day in datePickerList track by $index">
+                                    <a href="javascript:;" ng-click="setSearchDay($index)"><p>
+                                        {{day.date|date:'EEEE'}}</p><span>{{day.date|date:'shortDate'}}</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- <div class="date-other">
+                             <div class="date-picker">
+                                 <input type="text" class="form-control" placeholder="{{searchDay}}" ng-model="searchDay"
+                                        bs-datepicker=""
+                                        data-container="body">
+                                 <i class="right-icon glyphicon glyphicon-calendar"></i></div>
+                         </div>-->
+                        <div class="btn-group btn-group-sm pull-right">
+                            <button type="button" class="btn btn-default active" ng-class="{'active':template.value==0}"
+                                    ng-click="setShowMode(templates[0].value)">{{templates[0].name}}
+                            </button>
+                            <button type="button" class="btn btn-default" ng-class="{'active':template.value==1}"
+                                    ng-click="setShowMode(templates[1].value)">{{templates[1].name}}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="list-container" ng-include="template.url"></div>
+                    <div class="help-text">
+                        <div class="help-content">
+
+                            <p>这里显示所有已创建的场地
+                        <span ng-if="venueList">&nbsp;&nbsp;<span ng-if="venueList.length>0">当前共有<strong
+                                class="red-2">{{venueList.length}}</strong>块场地</span>
+                            <strong class="red-2" ng-if="venueList.length==0">您当前还没创建场地</strong>
+                        </span>
+                            </p>
+
+                            <p>场馆营业时间: <span>{{gymServiceTime.start}}</span>--<span>{{gymServiceTime.end}}</span></p>
+
+                            <p>您可以对每个场地单独进行设置，包括:“设置价格”，“调价”，“开启/关闭”，“上线/下线”，“删除”</p>
+
+                            <p>场地必须上线后才能接受预订，已上线的场地名称是彩色的（“<span class="red-2">一号场</span>”）</p>
+
+                            <p>您可以选择上面的日期，查看特定日期的场地价格/库存情况</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

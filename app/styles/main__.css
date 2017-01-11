@@ -1,0 +1,182 @@
+html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: SimSun, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333;
+
+}
+
+ul, li {
+    list-style: none outside none;
+    margin: 0;
+}
+
+a {
+    color: #7f96ac;
+    text-decoration: none;
+    outline: 0
+}
+
+a:active {
+    text-decoration: none
+}
+
+a:hover, a:focus {
+    color: #2d83cf;
+    text-decoration: none
+}
+
+a:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    text-decoration: none
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+    display: block
+}
+
+audio, canvas, video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+audio:not([controls]) {
+    display: none
+}
+
+img {
+    vertical-align: middle;
+    border: 0;
+    -ms-interpolation-mode: bicubic
+}
+
+p {
+    margin: 0
+}
+
+/***
+Custom Bootstrap Badges
+***/
+.badge {
+    font-size: 11px !important;
+    font-weight: 300;
+    text-align: center;
+    height: 18px;
+    padding: 3px 6px 3px 6px;
+    -webkit-border-radius: 12px !important;
+    -moz-border-radius: 12px !important;
+    border-radius: 12px !important;
+    text-shadow: none !important;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.badge.badge-roundless {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Badge variants */
+.badge-default {
+    background-color: #c6c6c6;
+    background-image: none;
+}
+
+.badge-primary {
+    background-color: #428bca;
+    background-image: none;
+}
+
+.badge-info {
+    background-color: #89c4f4;
+    background-image: none;
+}
+
+.badge-success {
+    background-color: #45b6af;
+    background-image: none;
+}
+
+.badge-danger {
+    background-color: #f3565d;
+    background-image: none;
+}
+
+.badge-warning {
+    background-color: #dfba49;
+    background-image: none;
+}
+
+/***
+Customized Bootstrap Dropdowns
+***/
+/***
+Dropdowns
+***/
+.dropup.open > .dropdown-toggle,
+.dropdown.open > .dropdown-toggle {
+    border-color: #ddd;
+}
+
+/***
+Dropdown Menu
+***/
+.dropdown-menu {
+    min-width: 175px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    list-style: none;
+    text-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    background-color: #ffffff;
+    box-shadow: 5px 5px rgba(102, 102, 102, 0.1);
+    border: 1px solid #eee;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.dropdown-menu li > a > [class^="icon-"],
+.dropdown-menu li > a > [class*=" icon-"] {
+    color: #7f96ac;
+}
+.dropdown-menu li > a:hover > [class^="icon-"],
+.dropdown-menu li > a:hover > [class*=" icon-"],
+.dropdown-menu li > a:focus > [class^="icon-"],
+.dropdown-menu li > a:focus > [class*=" icon-"]{
+    color: #555;
+}
+.dropdown-menu li > a > [class^="glyphicon-"],
+.dropdown-menu li > a > [class*=" glyphicon-"] {
+    color: #7f96ac;
+}
+.dropdown-menu li > a:hover > [class^="glyphicon-"],
+.dropdown-menu li > a:hover > [class*=" glyphicon-"],
+.dropdown-menu li > a:focus > [class^="glyphicon-"],
+.dropdown-menu li > a:focus > [class*=" glyphicon-"] {
+
+    color: #555;
+}
+.dropdown-menu.bottom-up {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
+}
